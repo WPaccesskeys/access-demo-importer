@@ -195,7 +195,27 @@
 
 .ap-popup-main-wrapp svg {
     width: 150px;
-    height: auto;
+    height: auto; 
+
+}
+.adi-last svg{
+        -webkit-transform: scale(0);
+       -moz-transform: scale(0);
+        -ms-transform: scale(0);
+         -o-transform: scale(0);
+            transform: scale(0);   
+    -webkit-transition: transform 0.5s ease;
+       -moz-transition: transform 0.5s ease;
+        -ms-transition: transform 0.5s ease;
+         -o-transition: transform 0.5s ease;
+            transition: transform 0.5s ease;
+}
+.adi-last.ap-active svg {
+      -webkit-transform: scale(1);
+       -moz-transform: scale(1);
+        -ms-transform: scale(1);
+         -o-transform: scale(1);
+            transform: scale(1); 
 }
 .ap-popup-main-wrapp .adi-last{
     text-align: center;
@@ -291,8 +311,16 @@ p.adi-imported svg{
 
 .demos-wrapper .demos-top-title-wrapp {
     text-align: center;
-    padding: 45px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: #fff;
+    border-left: 3px solid #0084ba;
 }
+
+.demos-top-title-wrapp p {
+    font-size: 18px;
+}
+
 
 input.adi-button.adi-import {
     cursor: pointer;

@@ -406,7 +406,7 @@
 			   		if(response == 'success'){
 								
 				   		el.attr('class', 'button disabled');
-				   		el.html('Activated');
+				   		el.html(accessLoc.button_activated);
 
 			   		}
 

@@ -125,7 +125,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
          */
         public static function scripts( $hook_suffix ) {
 
-            if ( 'appearance_page_demo-importer' == $hook_suffix ) {
+            if ( ('appearance_page_demo-importer' == $hook_suffix) || ('appearance_page_welcome-page' == $hook_suffix) ) {
 
                 // CSS
                 wp_enqueue_style( 'adi-demos-style', ADI_ASSETS_URL. 'css/demo-styles.css' );
@@ -140,6 +140,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                     'content_importing_error'   => esc_html__( 'There was a problem during the importing process resulting in the following error from your server:', 'access-demo-importer' ),
                     'button_activating'         => esc_html__( 'Activating', 'access-demo-importer' ) . '&hellip;',
                     'button_active'             => esc_html__( 'Active', 'access-demo-importer' ),
+                    'button_activated'          => esc_html__( 'Activated', 'access-demo-importer' ),
                 ) );
 
             }
@@ -161,8 +162,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
         ?>
         <div class="demos-wrapper clearfix">
             <div class="demos-top-title-wrapp">
-            <h2 class="demo-main-title"><?php esc_html_e('Welcome To Demo Importer','access-demo-importer') ?></h2>
-            <p><?php esc_html_e('To get started just select demo you like to import and click on install demos','access-demo-importer'); ?></p>
+                <p><?php esc_html_e('Choose the template you like to start with and publish your website within a moment.') ?></p>
             </div>
         <?php 
             if( empty($demos)){
