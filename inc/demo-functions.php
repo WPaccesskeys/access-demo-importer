@@ -702,31 +702,25 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			$demo 				= ADI_Demos::get_demos_data()[ $demo_type ];
 			$slider_file 		= isset( $demo['rev_slider'] ) ? $demo['rev_slider'] : '';
 
-			//check if requested file exists
-			$file_headers = @get_headers($slider_file);
-			if ($file_headers[0] == 'HTTP/1.0 404 Not Found'){
-			    $file_exists = false;
-			} else {
-			    $file_exists = true;
+			$response = ADI_Demos_Helpers::get_remote( $slider_file );
+
+			// No sample data found
+			if ( $response === false ) {
+				return new WP_Error( 'xml_import_error', __( 'Can not retrieve slider data. The server may be down at the moment please try again later. If you still have issues contact the theme developer for assistance.', 'access-demo-importer' ) );
 			}
+
 			
 			$slider_link_temp 	= ADI_PATH.'/temp-data/furniture_temp.zip';
-
-			if( true == $file_exists ){
-				//download requested file and upload to local folder
-				file_put_contents( $slider_link_temp, fopen($slider_file, 'r' ) ); 
-			}else{
-				echo 'The requested file doesn\'t exits on server';
-			}
+			file_put_contents( $slider_link_temp, $response );
 			
-
+			
             if ( class_exists( 'RevSlider' ) ) {
                 
                 $slider = new RevSlider();
                 $slider->importSliderFromPost( true, true, $slider_link_temp );
 
                 echo 'successful import';
-                unlink($slider_link_temp);
+                file_put_contents( $slider_link_temp, '' );
           
             } else {
                 echo 'It looks like you don\'t have Slider Revolution installed and activated. Sliders were not imported!<br>';
