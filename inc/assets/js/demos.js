@@ -127,6 +127,12 @@
 			$( '.adi-plugins-next' ).on( 'click', function( e ) {
 				e.preventDefault();
 				
+				var pluginCurrentClass = $('.adi-required-plugins button');
+				if( pluginCurrentClass.hasClass('activate-now') || pluginCurrentClass.hasClass('install-offline')){
+					$('.pl-install-wraning').html('Please install & activate all plugins first');
+					return;
+				}
+				
 				// Hide step one
 				$( '#adi-demo-plugins' ).hide();
 
@@ -344,7 +350,7 @@
 			e.preventDefault();
 
 			var pluginsBtnClass = $('.adi-plugin button').attr('class');
-			console.log(pluginsBtnClass);
+			//if( pluginsBtnClass.hasClass(''))
 
 		},
 
