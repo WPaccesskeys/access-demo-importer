@@ -248,7 +248,10 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 						<p><?php esc_html_e( 'Install & activate following plugins to import the demo perfectly.','access-demo-importer' ); ?></p>
 
 						<div class="adi-required-plugins oe-plugin-installer clearfix">
+							<div class="msg-wrapp">
 							<span class="pl-install-wraning"></span>
+							</div>
+							
 							<?php
 							self::required_plugins( $free, 'free' );
 							self::required_plugins( $premium, 'premium' ); ?>
