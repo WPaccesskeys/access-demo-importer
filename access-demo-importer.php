@@ -158,7 +158,8 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
           
           $prev_text    = esc_html__('Preview','access-demo-importer');
           $install_text = esc_html__('Import','access-demo-importer');
-          $pro_text     =  esc_html__('Pro','access-demo-importer');
+          $pro_text     = esc_html__('Pro','access-demo-importer');
+          $pro_upgrage  = esc_html__('Buy Now','access-demo-importer');
         ?>
         <div class="demos-wrapper clearfix">
             <div class="demos-top-title-wrapp">
@@ -186,6 +187,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                     <div class="demo-btn-wrapp">
                        <h4 class="demo-title"><?php echo esc_html($demo['demo_name']); ?></h4> 
                        <div class="buttons-wrapp">
+                           <a href="<?php echo esc_url($demo['upgrade_url']);?>" class="button " data-demo-id="<?php echo esc_attr($key); ?>" target="_blank"><?php echo $pro_upgrage; ?></a>
                             <a href="<?php echo esc_url($demo['preview_url']);?>" class="button preview-btn button-primary" target="_blank"><?php echo esc_html($prev_text); ?></a>
                        </div>
                     </div>
