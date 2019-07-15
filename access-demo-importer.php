@@ -158,21 +158,46 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
           
           $prev_text    = esc_html__('Preview','access-demo-importer');
           $install_text = esc_html__('Import','access-demo-importer');
-        
+          $pro_text     =  esc_html__('Pro','access-demo-importer');
         ?>
         <div class="demos-wrapper clearfix">
             <div class="demos-top-title-wrapp">
-                <p><?php esc_html_e('Choose the template you like to start with and publish your website within a moment.') ?></p>
+                <h3><?php esc_html_e('Ready to use pre-built websites with 1-click installation','access-demo-importer'); ?></h3>
+                <p><?php esc_html_e('With Zigcy, You can shoose from multiple unique demos, specially designed for you, that can be installed with a single clicl. You just need to choose your favourite, and we will take care of everything else') ?></p>
             </div>
         <?php 
             if( empty($demos)){
                 return;
             }
+
           foreach( $demos as $key => $demo ){
-          ?>    
+
+            if( $key == 'premium_demos'){ ?>
+                
+                <div class="demo pro-demo">
+                    <div class="img-wrapp">
+                        <a href="<?php echo esc_url($demo['preview_url']);?>">
+                            <span class="preview-text"><?php echo esc_html($prev_text); ?></span>
+                            <img src="<?php echo esc_url($demo['screen']);?>">
+                        </a>
+                    </div>
+                    <div class="demo-btn-wrapp">
+                       <h4 class="demo-title"><?php echo esc_html($demo['demo_name']); ?></h4> 
+                       <div class="buttons-wrapp">
+                            <a href="<?php echo esc_url($demo['preview_url']);?>" class="button preview-btn button-primary" target="_blank"><?php echo esc_html($prev_text); ?></a>
+                       </div>
+                    </div>
+                    <span class="pro-text"><?php echo esc_html($pro_text); ?></span>
+              </div>
+
+        <?php }else{ ?>    
+
           <div class="demo">
             <div class="img-wrapp">
+                <a href="<?php echo esc_url($demo['preview_url']);?>">
+                <span class="preview-text"><?php echo esc_html($prev_text); ?></span>
                 <img src="<?php echo esc_url($demo['screen']);?>">
+            </a>
             </div>
             <div class="demo-btn-wrapp">
                <h4 class="demo-title"><?php echo esc_html($key); ?></h4> 
@@ -183,6 +208,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
             </div>
           </div>
         <?php }
+        }
         echo '</div>';
 
         }

@@ -333,3 +333,68 @@ p.policy-notice strong {
 p.policy-notice {
     color: #666;
 }
+
+/* premium tag */
+
+.demo.pro-demo {
+    position: relative;
+}
+.demo.pro-demo span.pro-text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #ed5565;
+    color: #fff;
+    padding: 3px 10px;
+    font-weight: 600;
+    font-size: 14px;
+    -webkit-box-shadow: -1px 1px 5px rgba(0,0,0,.22);
+            box-shadow: -1px 1px 5px rgba(0,0,0,.22);
+}
+
+/* preview text */
+.demo .img-wrapp {
+    position: relative;
+}
+.demo span.preview-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+       -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+         -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.7);
+    padding: 10px 15px;
+    text-shadow: 0 1px 0 rgba(0,0,0,.6);
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.3s;
+       -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+         -o-transition: all 0.3s;
+            transition: all 0.3s;
+}
+
+.demo:hover span.preview-text{
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+.demo:hover .img-wrapp:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: hsla(0,0%,100%,.7);
+}
