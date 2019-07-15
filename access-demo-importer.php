@@ -165,6 +165,8 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                 <h3><?php esc_html_e('Ready to use pre-built websites with 1-click installation','access-demo-importer'); ?></h3>
                 <p><?php esc_html_e('With Zigcy, You can shoose from multiple unique demos, specially designed for you, that can be installed with a single clicl. You just need to choose your favourite, and we will take care of everything else') ?></p>
             </div>
+
+        <div class="demo-content-wrapper">
         <?php 
             if( empty($demos)){
                 return;
@@ -208,10 +210,10 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
             </div>
           </div>
         <?php }
-        }
-        echo '</div>';
-
-        }
+        } ?>
+        </div>
+        </div>
+    <?php }
 
         /**
         * Register menu

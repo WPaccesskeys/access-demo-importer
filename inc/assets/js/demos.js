@@ -49,6 +49,7 @@
 			$( document ).on( 'wp-plugin-install-success'	, this.installSuccess );
 			$( document ).on( 'wp-plugin-installing' 		, this.pluginInstalling );
 			$( document ).on( 'wp-plugin-install-error'		, this.installError );
+			$( document ).on( 'click'						, '.adi-plugin button',this.disableNextStep );
 
 		},
 
@@ -337,6 +338,14 @@
 				$( '#adi-demo-popup-content' ).html( '' );
 
 			}, 600);
+		},
+
+		disableNextStep: function(e){
+			e.preventDefault();
+
+			var pluginsBtnClass = $('.adi-plugin button').attr('class');
+			console.log(pluginsBtnClass);
+
 		},
 
 
