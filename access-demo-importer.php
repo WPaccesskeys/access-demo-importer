@@ -141,6 +141,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                     'button_activating'         => esc_html__( 'Activating', 'access-demo-importer' ) . '&hellip;',
                     'button_active'             => esc_html__( 'Active', 'access-demo-importer' ),
                     'button_activated'          => esc_html__( 'Activated', 'access-demo-importer' ),
+                    'plugin_activate_info'      => esc_html__( 'Please install & activate all plugins first', 'access-demo-importer' ),
                 ) );
 
             }
@@ -172,7 +173,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
             if( empty($demos)){
                 return;
             }
-
+      
           foreach( $demos as $key => $demo ){
 
             if( $key == 'premium_demos'){ ?>

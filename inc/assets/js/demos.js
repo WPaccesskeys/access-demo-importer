@@ -127,9 +127,9 @@
 				e.preventDefault();
 				
 				var pluginCurrentClass = $('.adi-required-plugins button');
-				if( pluginCurrentClass.hasClass('activate-now') || pluginCurrentClass.hasClass('install-offline')){
+				if( pluginCurrentClass.hasClass('activate-now') || pluginCurrentClass.hasClass('install-offline') || pluginCurrentClass.hasClass('install-now') ){
 					$('.msg-wrapp').addClass('active');
-					$('.msg-wrapp .pl-install-wraning').html('Please install & activate all plugins first');
+					$('.msg-wrapp .pl-install-wraning').html(accessLoc.plugin_activate_info);
 					return;
 				}
 				

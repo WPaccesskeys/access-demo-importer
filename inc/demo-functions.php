@@ -251,7 +251,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 							<div class="msg-wrapp">
 							<span class="pl-install-wraning"></span>
 							</div>
-							
+
 							<?php
 							self::required_plugins( $free, 'free' );
 							self::required_plugins( $premium, 'premium' ); ?>
@@ -271,7 +271,12 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 
 				<div class="adi-demo-import-form-types">
 
-					
+					<div class="import-notice">
+						<strong><i class="dashicons dashicons-info"></i><?php esc_html_e('Note:','access-demo-importer'); ?></strong>
+						<p>
+						<?php esc_html_e('We recommend you backup your website content before attempting a full site import.','access-demo-importer'); ?>
+						</p>
+					</div>
 
 					<h2 class="title"><?php esc_html_e( 'Select what you want to import:', 'access-demo-importer' ); ?></h2>
 					
