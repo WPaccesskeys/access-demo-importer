@@ -278,7 +278,7 @@
 					clearTimeout( importingLimit );
 
 					// Indicates if the importing of the content can continue
-					var continueProcess = true;
+					var continueProcess = false;
 
 					// Check if the importing of the content was successful or if there was any error
 					if ( data.status === 500 || data.status === 502 || data.status === 503 ) {
