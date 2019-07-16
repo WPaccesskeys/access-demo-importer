@@ -350,29 +350,21 @@
 
 				// Check if the current item in the iteration is in the list of importable content
 				var contentIndex = $.inArray( this.importData[ key ][ 'input_name' ], importData.contentToImport );
+				//console.log(contentIndex);
+				//console.log(this.importData[ key ][ 'input_name' ]);
+				//console.log(importData.contentToImport);
 
 				// If it is:
 				if ( contentIndex !== -1 ) {
 
 					// Get a reference to the current content
 					currentContent = key;
-
-					var dataFlag;
-
-					if( dataFlag === undefined ){
-
-					
-						var contentDisp = this.importData;
-						
-						$.each( contentDisp, function( index, id ) {
-							var demoTextsContent = contentDisp[index]['loader'];
-							$( '.adi-import-status' ).append( '<p class="adi-importing-text demo-id'+index+'"><span class="dashicons dashicons-backup"></span>' + demoTextsContent + '</p>' );
-							
-						});
-						dataFlag = false;
-					}
-
-					
+					//console.log(currentContent);
+					var contentDisp = this.importData;
+					var demoTextsContent = contentDisp[currentContent]['loader'];
+					//console.log(contentDisp[currentContent]['loader']);
+					$( '.adi-import-status' ).append( '<p class="adi-importing-text demo-id'+currentContent+'"><span class="dashicons dashicons-backup"></span>' + demoTextsContent + '</p>' );
+				
 				}
 			}
 
