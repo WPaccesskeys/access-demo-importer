@@ -240,7 +240,10 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			$premium = $plugins[ 'premium' ]; ?>
 
 			<div id="adi-demo-plugins" class="ap-active">
-				<a href="#" class="adi-demo-popup-close"><span class="dashicons dashicons-no-alt"></span></a>
+				<div class="demo-title-wrapp">
+					<h2 class="title"><?php echo  esc_html( $demo ); ?></h2>
+					<a href="#" class="adi-demo-popup-close"><span class="dashicons dashicons-no-alt"></span></a>
+				</div>
 				<div class="adi-popup-text">
 
 					<div class="adi-required-plugins-wrap">
@@ -264,7 +267,10 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 
 			</div>
 			<div class="ap-importer-form-wrapper ap-hidden">
-				<a href="#" class="adi-demo-popup-close"><span class="dashicons dashicons-no-alt"></span></a>
+				<div class="demo-title-wrapp">
+					<h2 class="title"><?php echo  esc_html( $demo ); ?></h2>
+					<a href="#" class="adi-demo-popup-close"><span class="dashicons dashicons-no-alt"></span></a>
+				</div>
 			<form method="post" id="adi-demo-import-form">
 
 				<input id="adi_import_demo" type="hidden" name="adi_import_demo" value="<?php echo esc_attr( $demo ); ?>" />
