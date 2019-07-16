@@ -9,6 +9,7 @@
 	var adiDemoImport = {
 
 		importData: {},
+		importTexts: {},
 		allowPopupClosing: true,
 
 		init: function() {
@@ -18,7 +19,6 @@
 		    $(document).on('click','.adi-import',function(){
 		    	$('.ap-importer-form-wrapper').removeClass('ap-active');
 		    });
-		
 
 			// Prevent the popup from showing when the live preview button
 			$( '.adi-demo-wrap .theme-actions a.button' ).on( 'click', function( e ) {
@@ -70,6 +70,7 @@
 
 				complete: function( data ) {
 					that.importData = $.parseJSON( data.responseText );
+					that.importTexts = $.parseJSON( data.responseText );
 					$('.adi-open-popup').removeClass('updating-message');
 				}
 			} );
@@ -158,12 +159,21 @@
 						contentToImport.push( $( this ).attr( 'name' ) );
 					}
 				} );
+				
 
 				// Hide the checkboxes and show the loader
 				$( this ).hide();
 				$( '.adi-loader' ).show();
 				$( '.adi-loader' ).removeClass('ap-hidden');
 				$( '.adi-loader' ).addClass('ap-active');
+
+				//pass values to display current demo importing progress texts
+				that.importingDemoContents({
+					demo: demo,
+					nonce: nonce,
+					contentToImport: contentToImport,
+					isXML: $( '#adi_import_xml' ).is( ':checked' )
+				});
 
 				// Start importing the content
 				that.importContent( {
@@ -172,6 +182,8 @@
 					contentToImport: contentToImport,
 					isXML: $( '#adi_import_xml' ).is( ':checked' )
 				} );
+
+
 			} );
 
 		},
@@ -231,19 +243,6 @@
 
 					// Get a reference to the current content
 					currentContent = key;
-
-					//add importing texts for current demo only once
-					if( currentContent === '0' ){
-					var contentDisp = this.importData;
-					$.each( contentDisp, function( index, id ) {
-						var demoTextsContent = contentDisp[index]['loader'];
-						$( '.adi-import-status' ).append( '<p class="adi-importing-text demo-id'+index+'">' + demoTextsContent + '</p>' );			
-
-					});
-					
-					}
-					
-				
 
 					// Remove the current content from the list of remaining importable content
 					importData.contentToImport.splice( contentIndex, 1 );
@@ -339,6 +338,45 @@
 					.text( accessLoc.content_importing_error );
 			}, 15 * 60 * 1000 );
 
+		},
+
+		//display importing demo contents
+		importingDemoContents: function(importData){
+
+			var currentContent;
+				
+				// Check the content that was selected to be imported.
+			for ( var key in this.importData ) {
+
+				// Check if the current item in the iteration is in the list of importable content
+				var contentIndex = $.inArray( this.importData[ key ][ 'input_name' ], importData.contentToImport );
+
+				// If it is:
+				if ( contentIndex !== -1 ) {
+
+					// Get a reference to the current content
+					currentContent = key;
+
+					var dataFlag;
+
+					if( dataFlag === undefined ){
+
+					
+						var contentDisp = this.importData;
+						
+						$.each( contentDisp, function( index, id ) {
+							var demoTextsContent = contentDisp[index]['loader'];
+							$( '.adi-import-status' ).append( '<p class="adi-importing-text demo-id'+index+'">' + demoTextsContent + '</p>' );
+							
+						});
+						dataFlag = false;
+					}
+
+					
+				}
+			}
+
+				
 		},
 
 		// Close demo popup.
