@@ -670,7 +670,7 @@ p.adi-importing-text:last-of-type:after {
     color: #fff;
     font-size: 25px;
 }
-a.adi-demo-popup-close {
+.ap-active .demo-title-wrapp a.adi-demo-popup-close {
     text-decoration: none;
     color: #fff;
     display: block;
