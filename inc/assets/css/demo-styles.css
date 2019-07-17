@@ -291,6 +291,7 @@ a.adi-demo-popup-close:focus{
 }
 .ap-popup-main-wrapp span.dashicons.dashicons-no-alt {
     font-size: 30px;
+    line-height: 20px;
 }
 .ap-popup-main-wrapp .adi-popup-text {
     margin-bottom: 20px;
@@ -473,9 +474,8 @@ p.policy-notice {
 }
 .demos-wrapper {
     background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px -5px rgba(0,0,0,0.5);
-    margin-right: 20px;
+    padding-left: 20px;
+   
 }
 .demos-wrapper .demo {
     float: left;
@@ -531,12 +531,14 @@ span.pl-install-wraning:after {
      display: inline-block;
  }
 .import-notice {
-    display: flex;
-    align-items: center;
-    background: #ffbf49;
+    display: flex;    
+    -webkit-align-items: center;
+            align-items: center;
+    background: #ff9800;
     color: #fff;
     padding: 0 10px 0 7px;
     margin-top: 15px;
+    text-align: left;
 }
 .adi-demo-import-form-types h2.title {
     text-align: center;
@@ -672,11 +674,10 @@ p.adi-importing-text:last-of-type:after {
     font-size: 25px;
 }
 .ap-active .demo-title-wrapp a.adi-demo-popup-close {
-    text-decoration: none;
     color: #fff;
     display: block;
-    text-align: right;    
-    margin: 0 15px 50px 0px;
+    text-align: right;
+    margin: 0 20px;
 }
 #adi-demo-plugins::-webkit-scrollbar {
     width: 7px;
@@ -694,4 +695,43 @@ p.adi-importing-text:last-of-type:after {
 }
 .ap-active a.adi-demo-popup-close {    
     color: #000;
+}
+.popup-preview {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    border: 1px solid;
+    left: 0;
+    overflow: hidden;
+    background: #ccc;
+}
+
+@media screen and (max-width: 1368px){
+    .demo_import .demos-wrapper .demo{
+        width: calc(50% - 25px);
+    }
+    .demo_import .demos-wrapper .demo:nth-child(2n) {
+    margin-right: 0;
+    }
+    .demo_import .demos-wrapper .demo:nth-child(3n) {
+    margin-right: 25px;
+    }
+}
+@media screen and (max-width: 800px){
+   .demos-wrapper .demo{
+        width: calc(50% - 25px);
+    }
+    .demos-wrapper .demo:nth-child(2n) {
+    margin-right: 0;
+    }
+    .demos-wrapper .demo:nth-child(3n) {
+    margin-right: 25px;
+    }
+}
+@media screen and (max-width: 630px){
+    .demos-wrapper .demo{
+        width: 100%
+        margin-right: 0px;
+    }
 }
