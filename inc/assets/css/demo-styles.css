@@ -536,7 +536,7 @@ span.pl-install-wraning:after {
     background: #ffbf49;
     color: #fff;
     padding: 0 10px 0 7px;
-    margin: 0;
+    margin-top: 15px;
 }
 .adi-demo-import-form-types h2.title {
     text-align: center;
@@ -686,7 +686,9 @@ a.adi-demo-popup-close {
 }
 #adi-demo-plugins::-webkit-scrollbar-thumb {
   background-color: #666;  
-  border-radius: 10px;
-  width: 100px;
+  border-radius: 10px; 
   height: 30px;
+}
+.ap-active a.adi-demo-popup-close {    
+    color: #000;
 }
