@@ -177,13 +177,13 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
             $pro_upgrage    = esc_html__('Buy Now','access-demo-importer');
             $theme_ob       = wp_get_theme();
             $theme_name     = $theme_ob -> get( 'Name' );
-            
+
             ?>
             <div class="demos-wrapper clearfix">
                 <div class="demos-top-title-wrapp">
                     <h3><?php esc_html_e('Ready to use pre-built websites with 1-click installation','access-demo-importer'); ?></h3>
                     <p><?php echo sprintf(esc_html__( 'With %1$s, You can shoose from multiple unique demos, specially designed for you, that can be installed with a single click. You just need to choose your favourite, and we will take care of everything else', 'access-demo-importer' ), $theme_name); ?></p>
-                    
+
                 </div>
 
                 <div class="demo-content-wrapper">
@@ -197,68 +197,91 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
 
                             <div class="demo">
                                 <div class="img-wrapp">
-                                    <a href="<?php echo esc_url($demo['preview_url']);?>">
+                                    <a href="<?php echo esc_url($demo['preview_url']);?>" class="adi-preview-url">
                                         <span class="preview-text"><?php echo esc_html($prev_text); ?></span>
                                         <img src="<?php echo esc_url($demo['screen']);?>">
                                     </a>
                                 </div>
                                 <div class="demo-btn-wrapp">
-                                   <h4 class="demo-title"><?php echo esc_html($demo_name); ?></h4> 
-                                   <div class="buttons-wrapp">
-                                    <a href="#" class="button install-btn install-demo-btn-step adi-open-popup" data-demo-id="<?php echo esc_attr($key); ?>"><?php echo $install_text; ?></a>
-                                    <a href="<?php echo esc_url($demo['preview_url']);?>" class="button preview-btn button-primary" target="_blank"><?php echo esc_html($prev_text); ?></a>
+                                    <h4 class="demo-title"><?php echo esc_html($demo_name); ?></h4> 
+                                    <div class="buttons-wrapp">
+                                        <a href="#" class="button install-btn install-demo-btn-step adi-open-popup" data-demo-id="<?php echo esc_attr($key); ?>"><?php echo $install_text; ?></a>
+                                        <a href="<?php echo esc_url($demo['preview_url']);?>" class="button preview-btn button-primary" target="_blank"><?php echo esc_html($prev_text); ?></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php } }
+                        <?php } }
 
-        //pro demos 
-                    $pro_demos = isset($demos['premium_demos']) ? $demos['premium_demos'] : '';
+//pro demos 
+                        $pro_demos = isset($demos['premium_demos']) ? $demos['premium_demos'] : '';
 
-                    if( $pro_demos ):
+                        if( $pro_demos ):
 
-                        foreach( $pro_demos as $pro_demo ){  ?>
+                            foreach( $pro_demos as $pro_demo ){  ?>
 
-                            <div class="demo pro-demo">
-                                <div class="img-wrapp">
-                                    <a href="<?php echo esc_url($pro_demo['preview_url']);?>">
-                                        <span class="preview-text"><?php echo esc_html($prev_text); ?></span>
-                                        <img src="<?php echo esc_url($pro_demo['screen']);?>">
-                                    </a>
+                                <div class="demo pro-demo">
+                                    <div class="img-wrapp">
+                                        <a href="<?php echo esc_url($pro_demo['preview_url']);?>">
+                                            <span class="preview-text"><?php echo esc_html($prev_text); ?></span>
+                                            <img src="<?php echo esc_url($pro_demo['screen']);?>">
+                                        </a>
+                                    </div>
+                                    <div class="demo-btn-wrapp">
+                                        <h4 class="demo-title"><?php echo esc_html($pro_demo['demo_name']); ?></h4> 
+                                        <div class="buttons-wrapp">
+                                            <a href="<?php echo esc_url($pro_demo['upgrade_url']);?>" class="button " data-demo-id="<?php echo esc_attr($key); ?>" target="_blank"><?php echo $pro_upgrage; ?></a>
+                                            <a href="<?php echo esc_url($pro_demo['preview_url']);?>" class="button preview-btn button-primary" target="_blank"><?php echo esc_html($prev_text); ?></a>
+                                        </div>
+                                    </div>
+                                    <span class="pro-text"><?php echo esc_html($pro_text); ?></span>
                                 </div>
-                                <div class="demo-btn-wrapp">
-                                   <h4 class="demo-title"><?php echo esc_html($pro_demo['demo_name']); ?></h4> 
-                                   <div class="buttons-wrapp">
-                                       <a href="<?php echo esc_url($pro_demo['upgrade_url']);?>" class="button " data-demo-id="<?php echo esc_attr($key); ?>" target="_blank"><?php echo $pro_upgrage; ?></a>
-                                       <a href="<?php echo esc_url($pro_demo['preview_url']);?>" class="button preview-btn button-primary" target="_blank"><?php echo esc_html($prev_text); ?></a>
-                                   </div>
-                               </div>
-                               <span class="pro-text"><?php echo esc_html($pro_text); ?></span>
-                           </div>
 
-                       <?php }
-                   endif; 
-                   ?>
+                            <?php }
+                        endif; 
+                        ?>
 
-               </div>
-           </div>
-       <?php }
+                    </div>
+                     <style type="text/css">
+                        .adi-popup-preview {
+                         position: absolute;
+                         width: 100%;
+                         height: 100%;
+                         top: 0;
+                         border: 1px solid;
+                         left: 0;
+                         overflow: hidden;
+                         background: #ccc;
+                         z-index: 9999999;
+                     }
+                     .adi-popup-preview .updating-message {
+                        text-align:center:
 
-       public function adi_display_demo_iframe(){ ?>
-        <div class="adi-popup-preview hidden">
-         <div class="close-popup"><i class="dashicons dashicons-no-alt"></i></div>
-         <iframe src="" width="100%" height="100%"></iframe>
-     </div>
-     <?
- }
+                    }
+
+                    .adi-popup-preview .updating-message::before {
+                        font-size: 50px;
+                    }
+                 </style>
+                </div>
+            <?php }
+
+            public function adi_display_demo_iframe(){ ?>
+                <div  class="adi-popup-preview import-php hidden">
+                   
+                 <div class="close-popup"><i class="dashicons dashicons-no-alt"></i></div>
+                 <div class="updating-message"></div>
+                 <iframe id="adi-popup-preview" src="" width="100%" height="100%"></iframe>
+             </div>
+             <?
+         }
 
      //compatible for OCDI 
- public function the100_ocdi_import_files() {
+         public function the100_ocdi_import_files() {
 
-    $demos = ADI_Demos::get_demos_data();
-    if( empty($demos)){
-        return;
-    }
+            $demos = ADI_Demos::get_demos_data();
+            if( empty($demos)){
+                return;
+            }
         /*echo '<pre>';
         print_r($demos);
         echo '<pre>';*/

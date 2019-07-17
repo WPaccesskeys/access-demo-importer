@@ -5,12 +5,19 @@
 	$( document ).ready( function() {
 		adiDemoImport.init();
 
-		$('body').on('click','.demo-content-wrapper .preview-btn',function(e){
+
+		$('body').on('click','.demo-content-wrapper .preview-btn, .demo-content-wrapper .adi-preview-url',function(e){
 			e.preventDefault();
 			var srcUrl = $(this).attr('href');
 			var popupDiv = $('.adi-popup-preview');
 			popupDiv.find('iframe').attr('src',srcUrl);
 			popupDiv.removeClass('hidden');
+
+			
+			setTimeout(function(){
+				popupDiv.removeClass('import-php');
+			}, 5000);
+			
 		});
 
 		$('body').on('click','.adi-popup-preview .close-popup',function(e){
