@@ -8,15 +8,15 @@
 		$('body').on('click','.demo-content-wrapper .preview-btn',function(e){
 			e.preventDefault();
 			var srcUrl = $(this).attr('href');
-			var popupDiv = $('.popup-preview');
+			var popupDiv = $('.adi-popup-preview');
 			popupDiv.find('iframe').attr('src',srcUrl);
 			popupDiv.removeClass('hidden');
 		});
 
-		$('body').on('click','.popup-preview .close-popup',function(e){
-			$('.popup-preview').addClass('hidden');
+		$('body').on('click','.adi-popup-preview .close-popup',function(e){
+			$('.adi-popup-preview').addClass('hidden');
 			var srcUrl = '';
-			var popupDiv = $('.popup-preview');
+			var popupDiv = $('.adi-popup-preview');
 			popupDiv.find('iframe').attr('src',srcUrl);
 		});
 

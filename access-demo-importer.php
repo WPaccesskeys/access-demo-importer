@@ -245,7 +245,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
        <?php }
 
        public function adi_display_demo_iframe(){ ?>
-        <div class="popup-preview hidden">
+        <div class="adi-popup-preview hidden">
          <div class="close-popup"><i class="dashicons dashicons-no-alt"></i></div>
          <iframe src="" width="100%" height="100%"></iframe>
      </div>
@@ -338,7 +338,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                             $key => $main_menu->term_id,
                         ));    
                     }
-                    
+
                     $front_page_id = get_page_by_title( $home_title );
 
                     update_option( 'show_on_front', 'page' );
@@ -347,7 +347,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                 }
             }
 
-            
+
         }
 
 
