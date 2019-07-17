@@ -124,7 +124,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
 
             require_once( ADI_PATH .'/inc/importers/class-helpers.php' );
             require( ADI_PATH . 'inc/demo-functions.php' );
-            //$this->the100_ocdi_import_files();
+            
 
         }
 
@@ -241,27 +241,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                         ?>
 
                     </div>
-                     <style type="text/css">
-                        .adi-popup-preview {
-                         position: absolute;
-                         width: 100%;
-                         height: 100%;
-                         top: 0;
-                         border: 1px solid;
-                         left: 0;
-                         overflow: hidden;
-                         background: #ccc;
-                         z-index: 9999999;
-                     }
-                     .adi-popup-preview .updating-message {
-                        text-align:center:
-
-                    }
-
-                    .adi-popup-preview .updating-message::before {
-                        font-size: 50px;
-                    }
-                 </style>
+                    
                 </div>
             <?php }
 
@@ -282,9 +262,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
             if( empty($demos)){
                 return;
             }
-        /*echo '<pre>';
-        print_r($demos);
-        echo '<pre>';*/
+     
         $demos_data = array();
         foreach( $demos as $demo ){
 
@@ -318,17 +296,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                 'preview_url'                => $preview_url,
             );
 
-                /*
-                $demos_data[] =
-                array(
-                    'import_file_name'           => $demo_name,
-                    'import_file_url'            => 'https://raw.githubusercontent.com/WPaccesskeys/zigcy-demos/master/fashion/fashion.xml',
-                    'import_widget_file_url'     => 'https://raw.githubusercontent.com/WPaccesskeys/zigcy-demos/master/fashion/fashion.wie',
-                    'import_customizer_file_url' => 'https://raw.githubusercontent.com/WPaccesskeys/zigcy-demos/master/fashion/fashion.dat',
-                    'import_preview_image_url'   => $screen,
-                    'preview_url'                => $preview_url,
-                );
-                */
+              
                 if( $import_redux ){
                     $demos_data['import_redux']  = $redux_array;
                 }
