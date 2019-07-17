@@ -248,7 +248,10 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
             public function adi_display_demo_iframe(){ ?>
                 <div  class="adi-popup-preview import-php hidden">
                    
-                 <div class="close-popup"><i class="dashicons dashicons-no-alt"></i></div>
+                 <div class="close-popup">
+                    <i class="dashicons dashicons-no-alt"></i>
+                    <span class="prev-close-info"><?php esc_html_e('Close Preview','access-demo-importer'); ?></span>
+                </div>
                  <div class="updating-message"></div>
                  <iframe id="adi-popup-preview" src="" width="100%" height="100%"></iframe>
              </div>
