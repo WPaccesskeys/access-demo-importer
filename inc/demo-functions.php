@@ -239,7 +239,9 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			$free = $plugins[ 'free' ];
 
 			// Get premium plugins
-			$premium = $plugins[ 'premium' ]; ?>
+			$premium = $plugins[ 'premium' ];
+
+			 ?>
 
 			<div id="adi-demo-plugins" class="ap-active">
 				<div class="demo-title-wrapp">
@@ -251,7 +253,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 					<div class="adi-required-plugins-wrap">
 						<h3><?php esc_html_e( 'Required Plugins', 'access-demo-importer' ); ?></h3>
 						<p><?php esc_html_e( 'Install & activate following plugins to import the demo perfectly.','access-demo-importer' ); ?></p>
-
+						<?php if( $premium || $free ){ ?>
 						<div class="adi-required-plugins oe-plugin-installer clearfix">
 							<div class="msg-wrapp">
 							<span class="pl-install-wraning"></span>
@@ -261,6 +263,9 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 							self::required_plugins( $free, 'free' );
 							self::required_plugins( $premium, 'premium' ); ?>
 						</div>
+					<?php }else{ ?>
+						<h4><?php esc_html_e('You can proceed to next step, you don\'t have any plugins to install','access-demo-importer'); ?></h4>
+					<?php } ?>
 					</div>
 
 				</div>
