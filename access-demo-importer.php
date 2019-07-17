@@ -170,50 +170,62 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
 
         <div class="demo-content-wrapper">
         <?php 
-            if( empty($demos)){
-                return;
-            }
-      
-          foreach( $demos as $key => $demo ){
+        if( empty($demos)){
+            return;
+        }
 
-            if( $key == 'premium_demos'){ ?>
-                
-                <div class="demo pro-demo">
-                    <div class="img-wrapp">
-                        <a href="<?php echo esc_url($demo['preview_url']);?>">
-                            <span class="preview-text"><?php echo esc_html($prev_text); ?></span>
-                            <img src="<?php echo esc_url($demo['screen']);?>">
-                        </a>
-                    </div>
-                    <div class="demo-btn-wrapp">
-                       <h4 class="demo-title"><?php echo esc_html($demo['demo_name']); ?></h4> 
-                       <div class="buttons-wrapp">
-                           <a href="<?php echo esc_url($demo['upgrade_url']);?>" class="button " data-demo-id="<?php echo esc_attr($key); ?>" target="_blank"><?php echo $pro_upgrage; ?></a>
-                            <a href="<?php echo esc_url($demo['preview_url']);?>" class="button preview-btn button-primary" target="_blank"><?php echo esc_html($prev_text); ?></a>
-                       </div>
-                    </div>
-                    <span class="pro-text"><?php echo esc_html($pro_text); ?></span>
-              </div>
 
-        <?php }else{ ?>    
+        foreach( $demos as $key => $demo ){ 
+
+        if( $key != 'premium_demos' ){
+            $demo_name = $demo['demo_name'];
+         ?>
 
           <div class="demo">
             <div class="img-wrapp">
                 <a href="<?php echo esc_url($demo['preview_url']);?>">
-                <span class="preview-text"><?php echo esc_html($prev_text); ?></span>
-                <img src="<?php echo esc_url($demo['screen']);?>">
-            </a>
+                    <span class="preview-text"><?php echo esc_html($prev_text); ?></span>
+                    <img src="<?php echo esc_url($demo['screen']);?>">
+                </a>
             </div>
             <div class="demo-btn-wrapp">
-               <h4 class="demo-title"><?php echo esc_html($key); ?></h4> 
+               <h4 class="demo-title"><?php echo esc_html($demo_name); ?></h4> 
                <div class="buttons-wrapp">
                     <a href="#" class="button install-btn install-demo-btn-step adi-open-popup" data-demo-id="<?php echo esc_attr($key); ?>"><?php echo $install_text; ?></a>
                     <a href="<?php echo esc_url($demo['preview_url']);?>" class="button preview-btn button-primary" target="_blank"><?php echo esc_html($prev_text); ?></a>
                </div>
             </div>
           </div>
+        <?php } }
+         
+        //pro demos 
+        $pro_demos = isset($demos['premium_demos']) ? $demos['premium_demos'] : '';
+
+        if( $pro_demos ):
+        
+        foreach( $pro_demos as $pro_demo ){  ?>
+
+            <div class="demo pro-demo">
+                <div class="img-wrapp">
+                    <a href="<?php echo esc_url($pro_demo['preview_url']);?>">
+                        <span class="preview-text"><?php echo esc_html($prev_text); ?></span>
+                        <img src="<?php echo esc_url($pro_demo['screen']);?>">
+                    </a>
+                </div>
+                <div class="demo-btn-wrapp">
+                   <h4 class="demo-title"><?php echo esc_html($pro_demo['demo_name']); ?></h4> 
+                   <div class="buttons-wrapp">
+                       <a href="<?php echo esc_url($pro_demo['upgrade_url']);?>" class="button " data-demo-id="<?php echo esc_attr($key); ?>" target="_blank"><?php echo $pro_upgrage; ?></a>
+                        <a href="<?php echo esc_url($pro_demo['preview_url']);?>" class="button preview-btn button-primary" target="_blank"><?php echo esc_html($prev_text); ?></a>
+                   </div>
+                </div>
+                <span class="pro-text"><?php echo esc_html($pro_text); ?></span>
+            </div>
+
         <?php }
-        } ?>
+        endif; 
+        ?>
+
         </div>
         </div>
     <?php }

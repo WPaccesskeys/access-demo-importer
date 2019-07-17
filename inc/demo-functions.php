@@ -798,9 +798,6 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 				// Posts to show on the blog page
 				$posts_to_show 		= isset( $demo['posts_to_show'] ) ? $demo['posts_to_show'] : '';
 
-				//menu name
-				$menu_name 			= isset( $demo['menu_name'] ) ? $demo['menu_name'] : 'Main Menu';
-				$menu_id 			= isset( $demo['menu_id'] ) ? $demo['menu_id'] : 'primary_menu';
 
 				// If shop demo
 				$shop_demo 			= isset( $demo['is_shop'] ) ? $demo['is_shop'] : false;
@@ -851,16 +848,21 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 				}
 
 				// Set imported menus to registered theme locations
-				$locations 	= get_theme_mod( 'nav_menu_locations' );
-				$menus 		= wp_get_nav_menus();
+				$locations 			= get_theme_mod( 'nav_menu_locations' );
+				$menus 				= wp_get_nav_menus();
+				$config_menus 		= isset( $demo['menus'] ) ? $demo['menus'] : '';
+
+				if( $config_menus ){
+					foreach( $config_menus as $menu_id => $config_menu ){
+						$locations[$menu_id] = $config_menu;
+					}
+				}
 
 				if ( $menus ) {
 					
 					foreach ( $menus as $menu ) {
-							$locations[$menu_id] = $menu_name;
-						if ( $menu->name == 'Main Menu' ) {
-							$locations['main_menu'] = $menu->term_id;
-						} else if ( $menu->name == 'Top Menu' ) {
+							
+						if ( $menu->name == 'Top Menu' ) {
 							$locations['topbar_menu'] = $menu->term_id;
 						} else if ( $menu->name == 'Footer Menu' ) {
 							$locations['footer_menu'] = $menu->term_id;
