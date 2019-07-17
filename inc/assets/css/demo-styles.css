@@ -651,3 +651,42 @@ p.adi-importing-text:last-of-type:after {
     font-size: 25px; 
     margin-right: 10px;
 }
+.demo-title-wrapp {
+    text-align: center;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    -webkit-align-items: center;
+            align-items: center;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    background: #666;
+    padding: 10px 0px;
+}
+.demo-title-wrapp h2.title {
+    display: block;
+    width: 100%;
+    color: #fff;
+    font-size: 25px;
+}
+a.adi-demo-popup-close {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    text-align: right;    
+    margin: 0 15px 50px 0px;
+}
+#adi-demo-plugins::-webkit-scrollbar {
+    width: 10px;
+}
+#adi-demo-plugins::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+}
+#adi-demo-plugins::-webkit-scrollbar-thumb {
+  background-color: #666;  
+  border-radius: 10px;
+  width: 100px;
+  height: 30px;
+}
