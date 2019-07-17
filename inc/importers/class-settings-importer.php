@@ -40,7 +40,7 @@ class ADI_Settings_Importer {
 	/**
 	 * Sanitization callback
 	 *
-	 * @since 1.0.5
+	 *
 	 */
 	private function import_data( $file ) {
 

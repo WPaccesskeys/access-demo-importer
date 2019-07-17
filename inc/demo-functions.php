@@ -20,10 +20,10 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			}
 
 			// Import demos page
-			if ( version_compare( PHP_VERSION, '5.4', '>=' ) ) {
+			/*if ( version_compare( PHP_VERSION, '5.4', '>=' ) ) {
 				require_once( ADI_PATH .'/inc/importers/class-helpers.php' );
 				
-			}
+			}*/
 
 			// Disable WooCommerce Wizard
 			add_filter( 'woocommerce_enable_setup_wizard', '__return_false' );
@@ -78,6 +78,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			// After import
 			add_action( 'wp_ajax_adi_after_import', array( $this, 'ajax_after_import' ) );
 
+
 		}
 
 		
@@ -93,6 +94,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			) );
 			return $mimes;
 		}
+
 
 
 		
@@ -225,13 +227,13 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			$theme_settings = isset($demos[$demo]['theme_settings']) 	? $demos[$demo]['theme_settings'] 	: '';
 			$widgets_file 	= isset($demos[$demo]['widgets_file']) 		? $demos[$demo]['widgets_file'] 	: '';
 			$rev_slider 	= isset($demos[$demo]['rev_slider']) 		? $demos[$demo]['rev_slider'] 		: '';
-			$redux_opt 		= isset($demos[$demo]['redux_opt']) 		? $demos[$demo]['redux_opt'] 		: '';
-
+			$import_redux   = isset($demos[$demo]['import_redux'] )     ? $demos[$demo]['import_redux']     		: '';
 			
 			
 
 			// Get required plugins
-			$plugins = $demos[$demo][ 'required_plugins' ];
+			$plugins 	= $demos[$demo][ 'required_plugins' ];
+			$demo_name 	= isset($demos[$demo]['demo_name']) ? $demos[$demo]['demo_name'] : '';
 
 			// Get free plugins
 			$free = $plugins[ 'free' ];
@@ -241,7 +243,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 
 			<div id="adi-demo-plugins" class="ap-active">
 				<div class="demo-title-wrapp">
-					<h2 class="title"><?php echo  esc_html( $demo ); ?></h2>
+					<h2 class="title"><?php echo  esc_html( $demo_name ); ?></h2>
 					<a href="#" class="adi-demo-popup-close"><span class="dashicons dashicons-no-alt"></span></a>
 				</div>
 				<div class="adi-popup-text">
@@ -268,7 +270,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			</div>
 			<div class="ap-importer-form-wrapper ap-hidden">
 				<div class="demo-title-wrapp">
-					<h2 class="title"><?php echo  esc_html( $demo ); ?></h2>
+					<h2 class="title"><?php echo  esc_html( $demo_name ); ?></h2>
 					<a href="#" class="adi-demo-popup-close"><span class="dashicons dashicons-no-alt"></span></a>
 				</div>
 			<form method="post" id="adi-demo-import-form">
@@ -325,7 +327,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 						</li>
 						<?php endif; ?>
 
-						<?php if($redux_opt): ?>
+						<?php if($import_redux): ?>
 						<li>
 							<label for="adi_import_theme_options">
 								<input id="adi_import_theme_options" type="checkbox" name="adi_import_theme_options" checked="checked" />
@@ -755,11 +757,17 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 
 			$demo_type 			= $_POST['adi_import_demo'];
 			$demo 				= ADI_Demos::get_demos_data()[ $demo_type ];
-			$option_filepath 	= isset( $demo['redux_opt'] ) ? $demo['redux_opt'] : '';
+			$import_redux 		= isset( $demo['import_redux'] ) ? $demo['import_redux'] : '';
+			$option_filepath 	= '';
+			if($import_redux){
+				$option_filepath 	= isset( $import_redux['file_url'] ) ? $import_redux['file_url'] : '';
+				$option_name 		= isset( $import_redux['option_name'] ) ? $import_redux['option_name'] : '';
+			}
+			
             $json_file 			= wp_remote_get( $option_filepath );
 
             if ( $json_file[ 'response' ][ 'code' ] == '200' && !empty( $json_file[ 'body' ] ) ) {
-                if ( update_option( 'zigcy_options', json_decode( $json_file[ 'body' ], true ), '', 'yes' ) ) {
+                if ( update_option( $option_name, json_decode( $json_file[ 'body' ], true ), '', 'yes' ) ) {
                     echo 'successful import';
                 }
             } else {
@@ -1007,6 +1015,8 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 				}
 			}
 		}
+
+
 
 	}
 

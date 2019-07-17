@@ -4,6 +4,23 @@
 
 	$( document ).ready( function() {
 		adiDemoImport.init();
+
+		$('body').on('click','.demo-content-wrapper .preview-btn',function(e){
+			e.preventDefault();
+			var srcUrl = $(this).attr('href');
+			var popupDiv = $('.popup-preview');
+			popupDiv.find('iframe').attr('src',srcUrl);
+			popupDiv.removeClass('hidden');
+		});
+
+		$('body').on('click','.popup-preview .close-popup',function(e){
+			$('.popup-preview').addClass('hidden');
+			var srcUrl = '';
+			var popupDiv = $('.popup-preview');
+			popupDiv.find('iframe').attr('src',srcUrl);
+		});
+
+
 	} );
 
 	var adiDemoImport = {
@@ -16,13 +33,13 @@
 			var that = this;
 			
 
-		    $(document).on('click','.adi-import',function(){
-		    	$('.ap-importer-form-wrapper').removeClass('ap-active');
-		    });
+			$(document).on('click','.adi-import',function(){
+				$('.ap-importer-form-wrapper').removeClass('ap-active');
+			});
 
 			// Prevent the popup from showing when the live preview button
 			$( '.adi-demo-wrap .theme-actions a.button' ).on( 'click', function( e ) {
-			   e.stopPropagation();
+				e.stopPropagation();
 			} );
 
 			// Get demo data
@@ -32,8 +49,8 @@
 
 				// Vars
 				var $selected_demo 		= $( this ).data( 'demo-id' ),
-					$loading_icon 		= $( '.preview-' + $selected_demo ),
-					$disable_preview 	= $( '.preview-all-' + $selected_demo );
+				$loading_icon 		= $( '.preview-' + $selected_demo ),
+				$disable_preview 	= $( '.preview-all-' + $selected_demo );
 
 				$loading_icon.show();
 				$disable_preview.show();
@@ -91,7 +108,7 @@
 
 					// Vars
 					var $loading_icon 		= $( '.preview-' + demo_name ),
-						$disable_preview 	= $( '.preview-all-' + demo_name );
+					$disable_preview 	= $( '.preview-all-' + demo_name );
 
 					// Hide loader
 					$loading_icon.hide();
@@ -150,8 +167,8 @@
 
 				// Vars
 				var demo 	= $( this ).find( '[name="adi_import_demo"]' ).val(),
-					nonce 	= $( this ).find( '[name="adi_import_demo_data_nonce"]' ).val(),
-					contentToImport = [];
+				nonce 	= $( this ).find( '[name="adi_import_demo_data_nonce"]' ).val(),
+				contentToImport = [];
 
 				// Check what need to be imported
 				$( this ).find( 'input[type="checkbox"]' ).each( function() {
@@ -191,13 +208,13 @@
 		// importing the content.
 		importContent: function( importData ) {
 			var that = this,
-				currentContent,
-				importingLimit,
-				timerStart = Date.now(),
-				ajaxData = {
-					adi_import_demo: importData.demo,
-					adi_import_demo_data_nonce: importData.nonce
-				};
+			currentContent,
+			importingLimit,
+			timerStart = Date.now(),
+			ajaxData = {
+				adi_import_demo: importData.demo,
+				adi_import_demo_data_nonce: importData.nonce
+			};
 
 			this.allowPopupClosing = false;
 			$( '.adi-demo-popup-close' ).fadeOut();
@@ -283,14 +300,14 @@
 					// Check if the importing of the content was successful or if there was any error
 					if ( data.status === 500 || data.status === 502 || data.status === 503 ) {
 						$( '.adi-importing' )
-							.addClass( 'adi-importing-failed' )
-							.removeClass( 'adi-importing' )
-							.text( accessLoc.content_importing_error + ' '+ data.status );
+						.addClass( 'adi-importing-failed' )
+						.removeClass( 'adi-importing' )
+						.text( accessLoc.content_importing_error + ' '+ data.status );
 					} else if ( data.responseText.indexOf( 'successful import' ) !== -1 ) {
 						$( '.adi-importing' ).addClass( 'adi-imported' ).removeClass( 'adi-importing' );
 					} else {
 						var errors = $.parseJSON( data.responseText ),
-							errorMessage = '';
+						errorMessage = '';
 
 						// Iterate through the list of errors
 						for ( var error in errors ) {
@@ -304,9 +321,9 @@
 
 						// Display the error message
 						$( '.adi-importing' )
-							.addClass( 'adi-importing-failed' )
-							.removeClass( 'adi-importing' )
-							.text( errorMessage );
+						.addClass( 'adi-importing-failed' )
+						.removeClass( 'adi-importing' )
+						.text( errorMessage );
 
 						that.allowPopupClosing = true;
 						$( '.adi-demo-popup-close' ).fadeIn();
@@ -333,9 +350,9 @@
 				$( '.adi-demo-popup-close' ).fadeIn();
 
 				$( '.adi-importing' )
-					.addClass( 'adi-importing-failed' )
-					.removeClass( 'adi-importing' )
-					.text( accessLoc.content_importing_error );
+				.addClass( 'adi-importing-failed' )
+				.removeClass( 'adi-importing' )
+				.text( accessLoc.content_importing_error );
 			}, 15 * 60 * 1000 );
 
 		},
@@ -344,9 +361,9 @@
 		importingDemoContents: function(importData){
 
 			var currentContent;
-				
+
 				// Check the content that was selected to be imported.
-			for ( var key in this.importData ) {
+				for ( var key in this.importData ) {
 
 				// Check if the current item in the iteration is in the list of importable content
 				var contentIndex = $.inArray( this.importData[ key ][ 'input_name' ], importData.contentToImport );
@@ -364,11 +381,11 @@
 					var demoTextsContent = contentDisp[currentContent]['loader'];
 					//console.log(contentDisp[currentContent]['loader']);
 					$( '.adi-import-status' ).append( '<p class="adi-importing-text demo-id'+currentContent+'"><span class="dashicons dashicons-backup"></span>' + demoTextsContent + '</p>' );
-				
+
 				}
 			}
 
-				
+
 		},
 
 		// Close demo popup.
@@ -394,7 +411,7 @@
 		},
 
 
-	
+
 
 		
 
@@ -404,7 +421,7 @@
 
 			// Vars
 			var $button 	= $( e.target ),
-				$document   = $( document );
+			$document   = $( document );
 
 			if ( $button.hasClass( 'updating-message' ) || $button.hasClass( 'button-disabled' ) ) {
 				return;
@@ -417,8 +434,8 @@
 					var $message = $( '.install-now.updating-message' );
 
 					$message
-						.removeClass( 'updating-message' )
-						.text( wp.updates.l10n.installNow );
+					.removeClass( 'updating-message' )
+					.text( wp.updates.l10n.installNow );
 
 					wp.a11y.speak( wp.updates.l10n.updateCancel, 'polite' );
 				} );
@@ -436,7 +453,7 @@
 			var el = $(this);
 
 			var is_loading = true;
-	    	el.addClass('updating-message');
+			el.addClass('updating-message');
 
 			var file_location 	= el.attr('data-href');
 			var file 			= el.attr('data-file');
@@ -457,21 +474,21 @@
 				},
 				success: function(response) {
 
-			   		if(response == 'success'){
-								
-				   		el.attr('class', 'button disabled');
-				   		el.html(accessLoc.button_activated);
+					if(response == 'success'){
 
-			   		}
+						el.attr('class', 'button disabled');
+						el.html(accessLoc.button_activated);
 
-			   		is_loading = false;
+					}
+
+					is_loading = false;
 			   		//location.reload();
-				},
-				error: function(xhr, status, error) {
-		  		el.removeClass('updating-message');
-		  		is_loading = false;
-				}
-			});
+			   	},
+			   	error: function(xhr, status, error) {
+			   		el.removeClass('updating-message');
+			   		is_loading = false;
+			   	}
+			   });
 
 		},
 
@@ -481,8 +498,8 @@
 
 			// Vars
 			var $button = $( e.target ),
-				$init 	= $button.data( 'init' ),
-				$slug 	= $button.data( 'slug' );
+			$init 	= $button.data( 'init' ),
+			$slug 	= $button.data( 'slug' );
 
 			if ( $button.hasClass( 'updating-message' ) || $button.hasClass( 'button-disabled' ) ) {
 				return;
@@ -502,14 +519,14 @@
 				if ( result.success ) {
 
 					$button.removeClass( 'button-primary install-now activate-now updating-message' )
-						.attr( 'disabled', 'disabled' )
-						.addClass( 'disabled' )
-						.text( accessLoc.button_active );
+					.attr( 'disabled', 'disabled' )
+					.addClass( 'disabled' )
+					.text( accessLoc.button_active );
 
 						//window.location.reload();
-				}
+					}
 
-			} );
+				} );
 		},
 
 		// Install success.
@@ -522,8 +539,8 @@
 			var $init = $message.data('init');
 
 			$message.removeClass( 'install-now installed button-disabled updated-message' )
-				.addClass( 'updating-message' )
-				.html( accessLoc.button_activating );
+			.addClass( 'updating-message' )
+			.html( accessLoc.button_activating );
 
 			// WordPress adds "Activate" button after waiting for 1000ms. So we will run our activation after that.
 			setTimeout( function() {
@@ -540,17 +557,17 @@
 					if ( result.success ) {
 
 						$message.removeClass( 'button-primary install-now activate-now updating-message' )
-							.attr( 'disabled', 'disabled' )
-							.addClass( 'disabled' )
-							.text( accessLoc.button_active );
+						.attr( 'disabled', 'disabled' )
+						.addClass( 'disabled' )
+						.text( accessLoc.button_active );
 
 							//window.location.reload();
 
-					} else {
-						$message.removeClass( 'updating-message' );
-					}
+						} else {
+							$message.removeClass( 'updating-message' );
+						}
 
-				} );
+					} );
 
 			}, 1200 );
 		},
@@ -560,7 +577,7 @@
 			e.preventDefault();
 
 			var $card = $( '.adi-plugin-' + args.slug ),
-				$button = $card.find( '.button' );
+			$button = $card.find( '.button' );
 
 			$button.addClass( 'updating-message' );
 		},
