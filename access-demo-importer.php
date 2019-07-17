@@ -272,7 +272,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                  <div class="updating-message"></div>
                  <iframe id="adi-popup-preview" src="" width="100%" height="100%"></iframe>
              </div>
-             <?
+             <?php
          }
 
      //compatible for OCDI 
