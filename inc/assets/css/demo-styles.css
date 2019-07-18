@@ -492,12 +492,12 @@ p.policy-notice {
 }
 .demos-wrapper .demo {
     float: left;
-    width: calc(25% - 25px);
+    width: calc(33.33% - 25px);
     margin-right: 25px;
     margin-bottom: 25px;
     border: 1px solid #ccc;
 }
-.demos-wrapper .demo:nth-child(4n) {
+.demos-wrapper .demo:nth-child(3n) {
     margin-right: 0;
 }
 span.pl-install-wraning {
@@ -809,9 +809,7 @@ body.adi-demo-overflow{
     }
 }
 @media screen and (max-width: 992px){
-.demos-top-title-wrapp li {
-    width: 100%;
-}
+
 }
 @media screen and (max-width: 800px){
  .demos-wrapper .demo{
