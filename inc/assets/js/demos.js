@@ -107,6 +107,7 @@
 		//load demo iframe
 		demoIframeLoad: function(e){
 			e.preventDefault();
+			$('body').addClass('adi-demo-overflow');
 			var srcUrl = $(this).attr('href');
 			var popupDiv = $('.adi-popup-preview');
 			popupDiv.find('iframe').attr('src',srcUrl);
@@ -121,6 +122,7 @@
 		//close demo iframe
 		demoIframeClose: function(e){
 			e.preventDefault();
+			$('body').removeClass('adi-demo-overflow');
 			$('.adi-popup-preview').addClass('hidden');
 			var srcUrl = '';
 			var popupDiv = $('.adi-popup-preview');
