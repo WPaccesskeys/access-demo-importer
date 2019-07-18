@@ -87,8 +87,8 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
             add_action('adi_display_demos',array($this,'adi_display_demos') );
             add_action( 'admin_menu', array( $this, 'adi_register_menu' ) );
 
-            add_filter( 'pt-ocdi/import_files', array( $this, 'the100_ocdi_import_files') );
-            add_action( 'pt-ocdi/after_import', array( $this, 'the100_ocdi_after_import') );
+            add_filter( 'pt-ocdi/import_files', array( $this, 'adi_ocdi_import_files') );
+            add_action( 'pt-ocdi/after_import', array( $this, 'adi_ocdi_after_import') );
             
             
 
@@ -259,7 +259,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
          }
 
      //compatible for OCDI 
-         public function the100_ocdi_import_files() {
+         public function adi_ocdi_import_files() {
 
             $demos = ADI_Demos::get_demos_data();
             if( empty($demos)){
@@ -311,7 +311,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
 
         }
 
-        public function the100_ocdi_after_import( $selected_import ) {
+        public function adi_ocdi_after_import( $selected_import ) {
 
             $demos = ADI_Demos::get_demos_data();
             if( empty($demos)){
@@ -323,7 +323,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                 $menus           = isset( $demo['menus'] )              ? $demo['menus']             : '';
                 $home_title      = isset( $demo['home_title'] )         ? $demo['home_title']        : '';
 
-                if( $selected_import == $demo_name ){
+                if( $selected_import['import_file_name'] == $demo_name ){
 
                     foreach( $menus as $key => $menu ){
                         $main_menu = get_term_by( 'name', $menus, 'nav_menu' );

@@ -4,30 +4,6 @@
 
 	$( document ).ready( function() {
 		adiDemoImport.init();
-
-
-		$('body').on('click','.demo-content-wrapper .preview-btn, .demo-content-wrapper .adi-preview-url',function(e){
-			e.preventDefault();
-			var srcUrl = $(this).attr('href');
-			var popupDiv = $('.adi-popup-preview');
-			popupDiv.find('iframe').attr('src',srcUrl);
-			popupDiv.removeClass('hidden');
-
-			
-			setTimeout(function(){
-				popupDiv.removeClass('import-php');
-			}, 5000);
-			
-		});
-
-		$('body').on('click','.adi-popup-preview .close-popup',function(e){
-			$('.adi-popup-preview').addClass('hidden');
-			var srcUrl = '';
-			var popupDiv = $('.adi-popup-preview');
-			popupDiv.find('iframe').attr('src',srcUrl);
-		});
-
-
 	} );
 
 	var adiDemoImport = {
@@ -67,6 +43,8 @@
 
 			} );
 
+			$( document ).on( 'click'						, '.demo-content-wrapper .preview-btn, .demo-content-wrapper .adi-preview-url',this.demoIframeLoad);
+			$( document ).on( 'click'						, '.adi-popup-preview .close-popup',this.demoIframeClose);
 			$( document ).on( 'click' 						, '.install-now', this.installNow );
 			$( document ).on( 'click' 						, '.install-offline', this.installProPlugins );
 			$( document ).on( 'click' 						, '.activate-now', this.activatePlugins );
@@ -124,6 +102,29 @@
 
 			} );
 
+		},
+
+		//load demo iframe
+		demoIframeLoad: function(e){
+			e.preventDefault();
+			var srcUrl = $(this).attr('href');
+			var popupDiv = $('.adi-popup-preview');
+			popupDiv.find('iframe').attr('src',srcUrl);
+			popupDiv.removeClass('hidden');
+
+			
+			setTimeout(function(){
+				popupDiv.removeClass('import-php');
+			}, 5000);
+		},
+
+		//close demo iframe
+		demoIframeClose: function(e){
+			e.preventDefault();
+			$('.adi-popup-preview').addClass('hidden');
+			var srcUrl = '';
+			var popupDiv = $('.adi-popup-preview');
+			popupDiv.find('iframe').attr('src',srcUrl);
 		},
 
 		// Run popup.
