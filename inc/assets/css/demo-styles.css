@@ -732,6 +732,7 @@ p.adi-importing-text:last-of-type:after {
             justify-content: center;
     height: 100%;
     width: 100%;
+    z-index: 1;
 }
 .adi-popup-preview .updating-message::before {
     font-size: 50px;
@@ -753,6 +754,7 @@ p.adi-importing-text:last-of-type:after {
     justify-content: center;
     -webkit-justify-content: center;
             justify-content: center;
+    z-index: 10;
 }
 .close-popup .dashicons-no-alt {
         font-size: 40px;
