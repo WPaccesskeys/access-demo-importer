@@ -109,7 +109,7 @@
 
 		},
 
-		//load demo iframe		
+		//load demo iframe
 		demoIframeLoad: function(e){
 			e.preventDefault();
 			$('body').addClass('adi-demo-overflow');
@@ -117,11 +117,11 @@
 			var popupDiv = $('.adi-popup-preview');
 			popupDiv.find('iframe').attr('src',srcUrl);
 			popupDiv.removeClass('hidden');
-			jQuery('#adi-popup-preview').on('load',function(){
-				if(jQuery('#adi-popup-preview').attr('src')!==''){
-					jQuery('.adi-popup-preview').removeClass('import-php');
-				}
-			});
+
+			
+			setTimeout(function(){
+				popupDiv.removeClass('import-php');
+			}, 3000);
 		},
 
 		//close demo iframe
