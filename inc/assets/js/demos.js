@@ -117,8 +117,10 @@
 			var popupDiv = $('.adi-popup-preview');
 			popupDiv.find('iframe').attr('src',srcUrl);
 			popupDiv.removeClass('hidden');
-			$('#adi-popup-preview').on('load',function(){
-				popupDiv.removeClass('import-php');
+			jQuery('#adi-popup-preview').on('load',function(){
+				if(jQuery('#adi-popup-preview').attr('src')!==''){
+					jQuery('.adi-popup-preview').removeClass('import-php');
+				}
 			});
 		},
 
@@ -132,6 +134,7 @@
 			var srcUrl = '';
 			var popupDiv = $('.adi-popup-preview');
 			popupDiv.find('iframe').attr('src',srcUrl);
+			$('.adi-popup-preview').addClass('import-php');
 		},
 
 		// Run popup.
