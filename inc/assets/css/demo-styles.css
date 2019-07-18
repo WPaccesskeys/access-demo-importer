@@ -781,6 +781,7 @@ body.adi-demo-overflow{
     box-sizing: border-box;
     margin-bottom: 10px;
     padding-right: 30px;
+    font-size: 15px;
 }
 .info-wrapper {
     padding: 0 20px;
@@ -789,6 +790,9 @@ body.adi-demo-overflow{
 }
 
 @media screen and (max-width: 1368px){
+    .demos-top-title-wrapp li{
+        font-size: 14px;
+    }
     .demo_import .demos-wrapper .demo{
         width: calc(50% - 25px);
     }
