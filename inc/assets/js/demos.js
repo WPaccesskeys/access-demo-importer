@@ -2,16 +2,7 @@
 
 	"use strict";
 
-	//close demo iframe on escape
-		function demoEscIframeClose(e){
-			alert('test');
-			if ( e.keyCode === 27 ) {
-				$('.adi-popup-preview').addClass('hidden');
-				var srcUrl = '';
-				var popupDiv = $('.adi-popup-preview');
-				popupDiv.find('iframe').attr('src',srcUrl);
-			}
-		}
+
 
 	$( document ).ready( function() {
 		adiDemoImport.init();
@@ -118,7 +109,7 @@
 
 		},
 
-		//load demo iframe
+		//load demo iframe		
 		demoIframeLoad: function(e){
 			e.preventDefault();
 			$('body').addClass('adi-demo-overflow');
@@ -126,11 +117,9 @@
 			var popupDiv = $('.adi-popup-preview');
 			popupDiv.find('iframe').attr('src',srcUrl);
 			popupDiv.removeClass('hidden');
-
-			
-			setTimeout(function(){
+			$('#adi-popup-preview').on('load',function(){
 				popupDiv.removeClass('import-php');
-			}, 5000);
+			});
 		},
 
 		//close demo iframe
