@@ -9,25 +9,25 @@
 .ap-popup-show .adi-demo-popup-container{
 
     -webkit-transform: scale(1) translate(-50%, -50%);
-       -moz-transform: scale(1) translate(-50%, -50%);
-        -ms-transform: scale(1) translate(-50%, -50%);
-         -o-transform: scale(1) translate(-50%, -50%);
-            transform: scale(1) translate(-50%, -50%);
+    -moz-transform: scale(1) translate(-50%, -50%);
+    -ms-transform: scale(1) translate(-50%, -50%);
+    -o-transform: scale(1) translate(-50%, -50%);
+    transform: scale(1) translate(-50%, -50%);
 }
 
 .adi-demo-popup-container {
     top: 50%;
     left: 50%;
     -webkit-transition: all 0.3s;
-       -moz-transition: all 0.3s;
-        -ms-transition: all 0.3s;
-         -o-transition: all 0.3s;
-            transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
     -webkit-transform: scale(0) translate(-50%,-50%);
-       -moz-transform: scale(0) translate(-50%,-50%);
-        -ms-transform: scale(0) translate(-50%,-50%);
-         -o-transform: scale(0) translate(-50%,-50%);
-            transform: scale(0) translate(-50%,-50%);
+    -moz-transform: scale(0) translate(-50%,-50%);
+    -ms-transform: scale(0) translate(-50%,-50%);
+    -o-transform: scale(0) translate(-50%,-50%);
+    transform: scale(0) translate(-50%,-50%);
     
     position: absolute;
     
@@ -51,13 +51,13 @@
 }
 .popup-wrapp-outter .ap-hidden{
     position: absolute;
-	opacity: 0;
+    opacity: 0;
     visibility: hidden;
     -webkit-transition: all 0.3s;
-       -moz-transition: all 0.3s;
-        -ms-transition: all 0.3s;
-         -o-transition: all 0.3s;
-            transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
 }
 .popup-wrapp-outter .ap-active{
 	opacity: 1;
@@ -66,12 +66,12 @@
     top: 50%;
     left: 50%;
     -webkit-box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-            box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
     -webkit-transform: translate(-50%,-50%);
-       -moz-transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-         -o-transform: translate(-50%,-50%);
-            transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
     
     width: 500px;
     background: #fff;
@@ -104,7 +104,7 @@
     transform: translateY(-50%);
     cursor: pointer;
     visibility: hidden;
-}*/
+    }*/
 /*.ap-importer-choices li label strong:before{
    
 }
@@ -204,10 +204,10 @@
     position: relative;
     z-index: 2;
     -webkit-transition: color 200ms ease-in;
-       -moz-transition: color 200ms ease-in;
-        -ms-transition: color 200ms ease-in;
-         -o-transition: color 200ms ease-in;
-            transition: color 200ms ease-in;
+    -moz-transition: color 200ms ease-in;
+    -ms-transition: color 200ms ease-in;
+    -o-transition: color 200ms ease-in;
+    transition: color 200ms ease-in;
     overflow: hidden;
     margin-left: 0 !important;
 }
@@ -249,37 +249,37 @@
          -o-transform: translate(-50%, -50%) scale3d(56, 56, 1);
             transform: translate(-50%, -50%) scale3d(56, 56, 1);
     opacity: 1;
-}*/
+    }*/
 
-.ap-popup-main-wrapp svg {
-    width: 150px;
-    height: auto; 
+    .ap-popup-main-wrapp svg {
+        width: 150px;
+        height: auto; 
 
-}
-.adi-last svg{
+    }
+    .adi-last svg{
         -webkit-transform: scale(0);
-       -moz-transform: scale(0);
+        -moz-transform: scale(0);
         -ms-transform: scale(0);
-         -o-transform: scale(0);
-            transform: scale(0);   
-    -webkit-transition: transform 0.5s ease;
-       -moz-transition: transform 0.5s ease;
+        -o-transform: scale(0);
+        transform: scale(0);   
+        -webkit-transition: transform 0.5s ease;
+        -moz-transition: transform 0.5s ease;
         -ms-transition: transform 0.5s ease;
-         -o-transition: transform 0.5s ease;
-            transition: transform 0.5s ease;
-}
-.adi-last.ap-active svg {
+        -o-transition: transform 0.5s ease;
+        transition: transform 0.5s ease;
+    }
+    .adi-last.ap-active svg {
       -webkit-transform: scale(1);
-       -moz-transform: scale(1);
-        -ms-transform: scale(1);
-         -o-transform: scale(1);
-            transform: scale(1); 
-}
-.ap-popup-main-wrapp .adi-last{
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      -o-transform: scale(1);
+      transform: scale(1); 
+  }
+  .ap-popup-main-wrapp .adi-last{
     text-align: center;
 }
 a.adi-demo-popup-close {
-        text-decoration: none;
+    text-decoration: none;
     color: #333;
     display: block;
     text-align: right;
@@ -287,7 +287,7 @@ a.adi-demo-popup-close {
 }
 a.adi-demo-popup-close:focus{
     -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
 }
 .ap-popup-main-wrapp span.dashicons.dashicons-no-alt {
     font-size: 30px;
@@ -310,10 +310,10 @@ a.adi-demo-popup-close:focus{
     font-size: 14px;
     text-transform: capitalize;
     -webkit-transition: all 0.3s;
-       -moz-transition: all 0.3s;
-        -ms-transition: all 0.3s;
-         -o-transition: all 0.3s;
-            transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 .ap-popup-main-wrapp .adi-last a.btn-success-result:hover,
@@ -352,7 +352,7 @@ p.adi-imported svg{
 }
 
 .demos-wrapper .buttons-wrapp {
-        display: inline-block;
+    display: inline-block;
     float: right;
     position: absolute;
     bottom: 0;
@@ -370,7 +370,7 @@ p.adi-imported svg{
     margin: 0;
     margin-top: -5px;
     position: relative;
-        border-top: 1px solid #ccc;
+    border-top: 1px solid #ccc;
 }
 .demo-content-wrapper .demo:hover .buttons-wrapp{
     opacity: 1;
@@ -414,7 +414,7 @@ p.policy-notice {
     font-weight: 600;
     font-size: 14px;
     -webkit-box-shadow: -1px 1px 5px rgba(0,0,0,.22);
-            box-shadow: -1px 1px 5px rgba(0,0,0,.22);
+    box-shadow: -1px 1px 5px rgba(0,0,0,.22);
 }
 .demo.pro-demo span.pro-text:after {
     position: absolute;
@@ -435,10 +435,10 @@ p.policy-notice {
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
-       -moz-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-         -o-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     background: rgba(0,0,0,.7);
     padding: 10px 15px;
     text-shadow: 0 1px 0 rgba(0,0,0,.6);
@@ -449,10 +449,10 @@ p.policy-notice {
     opacity: 0;
     visibility: hidden;
     -webkit-transition: all 0.3s;
-       -moz-transition: all 0.3s;
-        -ms-transition: all 0.3s;
-         -o-transition: all 0.3s;
-            transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 .demo:hover span.preview-text{
@@ -475,16 +475,16 @@ p.policy-notice {
 .demos-wrapper {
     background: #fff;
     padding-left: 20px;
-   
+
 }
 .demos-wrapper .demo {
     float: left;
-    width: calc(33.33% - 25px);
+    width: calc(25% - 25px);
     margin-right: 25px;
     margin-bottom: 25px;
     border: 1px solid #ccc;
 }
-.demos-wrapper .demo:nth-child(3n) {
+.demos-wrapper .demo:nth-child(4n) {
     margin-right: 0;
 }
 span.pl-install-wraning {
@@ -525,15 +525,15 @@ span.pl-install-wraning:after {
 }
 .adi-plugin .wp-core-ui .button-primary{
     -webkit-border-radius: 0;
-            border-radius: 0;
+    border-radius: 0;
 }
- .ap-popup-main-wrapp a.adi-button.adi-plugins-next{
-     display: inline-block;
- }
+.ap-popup-main-wrapp a.adi-button.adi-plugins-next{
+   display: inline-block;
+}
 .import-notice {
     display: flex;    
     -webkit-align-items: center;
-            align-items: center;
+    align-items: center;
     background: #ff9800;
     color: #fff;
     padding: 0 10px 0 7px;
@@ -553,7 +553,7 @@ input.adi-button.adi-import {
 }
 .wp-core-ui .button-primary{
     -webkit-border-radius: 0;
-            border-radius: 0;
+    border-radius: 0;
 }
 .import-notice strong {
     width: 15%;
@@ -570,14 +570,14 @@ input.adi-button.adi-import {
     display: flex;
     flex-direction: column;
     -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     align-items: center;
     -webkit-align-items: center;
-            align-items: center;
+    align-items: center;
     justify-content: center;
     -webkit-justify-content: center;
-            justify-content: center;
+    justify-content: center;
 }
 .adi-last a.adi-demo-popup-close {
     position: absolute;
@@ -586,25 +586,25 @@ input.adi-button.adi-import {
 }
 .adi-importing .dashicons-update-alt{
     -webkit-animation: rotate-spin  3s infinite linear;
-       -moz-animation: rotate-spin  3s infinite linear;
-         -o-animation: rotate-spin  3s infinite linear;
-            animation: rotate-spin  3s infinite linear;
+    -moz-animation: rotate-spin  3s infinite linear;
+    -o-animation: rotate-spin  3s infinite linear;
+    animation: rotate-spin  3s infinite linear;
 }
 @keyframes rotate-spin{
     form{
         -webkit-transform: rotate(0deg);
-           -moz-transform: rotate(0deg);
-            -ms-transform: rotate(0deg);
-             -o-transform: rotate(0deg);
-                transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     to{
-   -webkit-transform: rotate(360deg);
-   -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
+     -webkit-transform: rotate(360deg);
+     -moz-transform: rotate(360deg);
+     -ms-transform: rotate(360deg);
      -o-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
+     transform: rotate(360deg);
+ }
 }
 .adi-importing .dashicons-backup,
 .adi-imported .dashicons-backup{
@@ -615,10 +615,10 @@ p.adi-importing-text {
     position: relative;
     display: flex;
     -webkit-align-items: center;
-            align-items: center;
+    align-items: center;
 }
 p.adi-importing-text:after {
-        position: absolute;
+    position: absolute;
     content: '';
     height: 55px;
     width: 2px;
@@ -627,19 +627,19 @@ p.adi-importing-text:after {
     left: 12px;
 }
 .adi-import-status.adi-popup-text i.dashicons.dashicons-update-alt {
-      color: #1ab394;
-    margin-right: 15px;    
-    width: 25px;
-    height: 25px;
-    font-size: 25px;
-    margin-left: 2px;
+  color: #1ab394;
+  margin-right: 15px;    
+  width: 25px;
+  height: 25px;
+  font-size: 25px;
+  margin-left: 2px;
 }
 .adi-import-status.adi-popup-text span.dashicons.dashicons-backup {
     background: #f56e28;
     color: #fff;    
     border-radius: 50%;
-        margin-right: 10px;
-        width: 25px;
+    margin-right: 10px;
+    width: 25px;
     height: 25px;
     font-size: 25px;
 }
@@ -648,7 +648,7 @@ p.adi-importing-text:last-of-type:after {
 }
 .adi-imported .dashicons-yes-alt{
     color: #1ab394;
-     width: 25px;
+    width: 25px;
     height: 25px;
     font-size: 25px; 
     margin-right: 10px;
@@ -659,13 +659,13 @@ p.adi-importing-text:last-of-type:after {
     display: flex;
     align-items: center;
     -webkit-align-items: center;
-            align-items: center;
+    align-items: center;
     justify-content: space-between;
     -webkit-justify-content: space-between;
-            justify-content: space-between;
+    justify-content: space-between;
     background: #666;
     padding: 10px 0px;
-        margin: -20px -20px 0 -20px;
+    margin: -20px -20px 0 -20px;
 }
 .demo-title-wrapp h2.title {
     display: block;
@@ -682,11 +682,11 @@ p.adi-importing-text:last-of-type:after {
 #adi-demo-plugins::-webkit-scrollbar {
     width: 7px;
     -webkit-border-radius: 10px;
-            border-radius: 10px;
+    border-radius: 10px;
 }
 #adi-demo-plugins::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        border-radius: 10px;
+    border-radius: 10px;
 }
 #adi-demo-plugins::-webkit-scrollbar-thumb {
   background-color: #1c84b6;  
@@ -696,15 +696,43 @@ p.adi-importing-text:last-of-type:after {
 .ap-active a.adi-demo-popup-close {    
     color: #000;
 }
-.popup-preview {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+.adi-popup-preview {
+    position: fixed;
     top: 0;
-    border: 1px solid;
     left: 0;
+    right: 0;
+    bottom: 0;
     overflow: hidden;
     background: #ccc;
+    z-index: 999999;
+}
+.adi-popup-preview.import-php .updating-message {
+    text-align:center;
+    padding: 50px;
+}
+.adi-popup-preview .updating-message::before {
+    font-size: 50px;
+}
+.close-popup {
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    border-top: 2px solid;
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+    text-align: center;
+}
+.close-popup .dashicons-no-alt {
+    font-size: 40px;
+    vertical-align: middle;
+    display: inline-block;
+}
+.close-popup .prev-close-info{
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 10px;
 }
 
 @media screen and (max-width: 1368px){
@@ -712,26 +740,47 @@ p.adi-importing-text:last-of-type:after {
         width: calc(50% - 25px);
     }
     .demo_import .demos-wrapper .demo:nth-child(2n) {
-    margin-right: 0;
+        margin-right: 0;
     }
     .demo_import .demos-wrapper .demo:nth-child(3n) {
+        margin-right: 25px;
+    }
+    .demos-wrapper .demo:nth-child(3n) {
+    margin-right: 0;
+    }
+    .demos-wrapper .demo {    
+    width: calc(33.33% - 25px);
+    }
+    .demos-wrapper .demo:nth-child(4n) {
     margin-right: 25px;
     }
 }
 @media screen and (max-width: 800px){
-   .demos-wrapper .demo{
-        width: calc(50% - 25px);
-    }
-    .demos-wrapper .demo:nth-child(2n) {
+ .demos-wrapper .demo{
+    width: calc(50% - 25px);
+}
+.demos-wrapper .demo:nth-child(2n) {
     margin-right: 0;
-    }
-    .demos-wrapper .demo:nth-child(3n) {
+}
+.demos-wrapper .demo:nth-child(3n) {
     margin-right: 25px;
-    }
+}
+.demos-wrapper .demo:nth-child(6n) {
+    margin-right: 0;
+}
+.demos-wrapper .buttons-wrapp{
+        padding: 8px 15px;
+}
 }
 @media screen and (max-width: 630px){
     .demos-wrapper .demo{
-        width: 100%
+        width: 100%;
         margin-right: 0px;
+    }
+    .demos-wrapper .demo:nth-child(3n) {
+    margin-right: 0px;
+    }
+    .demos-wrapper.clearfix {
+    padding-right: 20px;
     }
 }
