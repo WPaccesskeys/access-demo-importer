@@ -246,7 +246,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
             <?php }
 
             public function adi_display_demo_iframe(){ ?>
-                <div  class="adi-popup-preview import-php hidden">
+                <div  class="adi-popup-preview import-php hidden" onKeyUp="demoEscIframeClose(event);">
                    
                  <div class="close-popup">
                     <i class="dashicons dashicons-no-alt"></i>

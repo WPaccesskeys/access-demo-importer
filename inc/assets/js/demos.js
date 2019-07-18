@@ -2,8 +2,22 @@
 
 	"use strict";
 
+	//close demo iframe on escape
+		function demoEscIframeClose(e){
+			alert('test');
+			if ( e.keyCode === 27 ) {
+				$('.adi-popup-preview').addClass('hidden');
+				var srcUrl = '';
+				var popupDiv = $('.adi-popup-preview');
+				popupDiv.find('iframe').attr('src',srcUrl);
+			}
+		}
+
 	$( document ).ready( function() {
 		adiDemoImport.init();
+		
+
+
 	} );
 
 	var adiDemoImport = {
@@ -122,6 +136,8 @@
 		//close demo iframe
 		demoIframeClose: function(e){
 			e.preventDefault();
+
+
 			$('body').removeClass('adi-demo-overflow');
 			$('.adi-popup-preview').addClass('hidden');
 			var srcUrl = '';
