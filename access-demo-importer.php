@@ -175,14 +175,20 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
             $install_text   = esc_html__('Import','access-demo-importer');
             $pro_text       = esc_html__('Pro','access-demo-importer');
             $pro_upgrage    = esc_html__('Buy Now','access-demo-importer');
-            $theme_ob       = wp_get_theme();
-            $theme_name     = $theme_ob -> get( 'Name' );
 
             ?>
             <div class="demos-wrapper clearfix">
                 <div class="demos-top-title-wrapp">
-                    <h3><?php esc_html_e('Ready to use pre-built websites with 1-click installation','access-demo-importer'); ?></h3>
-                    <p><?php echo sprintf(esc_html__( 'With %1$s, You can choose from multiple unique demos, specially designed for you, that can be installed with a single click. You just need to choose your favourite, and we will take care of everything else', 'access-demo-importer' ), $theme_name); ?></p>
+                    <h3><?php esc_html_e('Choose one of the starter sites (demos) below, checkout full version demo and once you decide to install - go for it!','access-demo-importer'); ?></h3>
+                    <p><?php esc_html_e('However please consider the following points before installing any demos: ','access-demo-importer'); ?></p>
+                    <ul>
+                        <li><?php esc_html_e('If your site already has content or already in use, importing one of these demos is not suggested. The demo content and your existing content might mix up.','access-demo-importer'); ?></li>
+                        <li><?php esc_html_e('Import demo on a FRESH WordPress installation to experience the exact demo you\'ve seen on our demo pages.','access-demo-importer'); ?> </li>
+                        <li> <?php esc_html_e('Installing demo, will also install all the required plugins and activate them for you.','access-demo-importer'); ?> </li>
+                        <li><?php esc_html_e('None of your existing content (page, post etc) will be deleted. ','access-demo-importer'); ?></li>
+                        <li><?php esc_html_e('Demo installation will take some time, have patience. Reset the demo installation (option given at the bottom of this page) to start a new demo installation.','access-demo-importer'); ?> </li>
+
+                    </ul>
 
                 </div>
 
