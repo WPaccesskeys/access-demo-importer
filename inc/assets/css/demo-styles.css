@@ -773,16 +773,9 @@ body.adi-demo-overflow{
     overflow:hidden;
 }
 .demos-top-title-wrapp ul {
-    display: flex;    
-    -webkit-align-items: center;
-            align-items: center;   
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
     list-style: decimal;
 }
 .demos-top-title-wrapp li {
-    width: 50%;
     text-align: left;
     padding-left: 10px;
     box-sizing: border-box;
@@ -790,8 +783,9 @@ body.adi-demo-overflow{
     padding-right: 30px;
 }
 .info-wrapper {
-    background: #f1f1f1;
-    padding: 10px 20px;
+    padding: 0 20px;
+    width: 60%;
+    margin: 0 auto;
 }
 
 @media screen and (max-width: 1368px){
