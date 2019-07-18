@@ -181,6 +181,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                 <div class="demos-top-title-wrapp">
                     <h3><?php esc_html_e('Choose one of the starter sites (demos) below, checkout full version demo and once you decide to install - go for it!','access-demo-importer'); ?></h3>
                     <p><?php esc_html_e('However please consider the following points before installing any demos: ','access-demo-importer'); ?></p>
+                    <div class="info-wrapper">
                     <ul>
                         <li><?php esc_html_e('If your site already has content or already in use, importing one of these demos is not suggested. The demo content and your existing content might mix up.','access-demo-importer'); ?></li>
                         <li><?php esc_html_e('Import demo on a FRESH WordPress installation to experience the exact demo you\'ve seen on our demo pages.','access-demo-importer'); ?> </li>
@@ -189,6 +190,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                         <li><?php esc_html_e('Demo installation will take some time, have patience. Reset the demo installation (option given at the bottom of this page) to start a new demo installation.','access-demo-importer'); ?> </li>
 
                     </ul>
+                    </div>
 
                 </div>
 
