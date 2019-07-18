@@ -772,6 +772,28 @@ p.adi-importing-text:last-of-type:after {
 body.adi-demo-overflow{
     overflow:hidden;
 }
+.demos-top-title-wrapp ul {
+    display: flex;    
+    -webkit-align-items: center;
+            align-items: center;   
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    list-style: decimal;
+}
+.demos-top-title-wrapp li {
+    width: 50%;
+    text-align: left;
+    padding-left: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    padding-right: 30px;
+}
+.info-wrapper {
+    background: #f1f1f1;
+    padding: 10px 20px;
+}
+
 @media screen and (max-width: 1368px){
     .demo_import .demos-wrapper .demo{
         width: calc(50% - 25px);
@@ -791,6 +813,11 @@ body.adi-demo-overflow{
     .demos-wrapper .demo:nth-child(4n) {
     margin-right: 25px;
     }
+}
+@media screen and (max-width: 992px){
+.demos-top-title-wrapp li {
+    width: 100%;
+}
 }
 @media screen and (max-width: 800px){
  .demos-wrapper .demo{
