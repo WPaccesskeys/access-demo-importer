@@ -182,7 +182,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
             <div class="demos-wrapper clearfix">
                 <div class="demos-top-title-wrapp">
                     <h3><?php esc_html_e('Ready to use pre-built websites with 1-click installation','access-demo-importer'); ?></h3>
-                    <p><?php echo sprintf(esc_html__( 'With %1$s, You can shoose from multiple unique demos, specially designed for you, that can be installed with a single click. You just need to choose your favourite, and we will take care of everything else', 'access-demo-importer' ), $theme_name); ?></p>
+                    <p><?php echo sprintf(esc_html__( 'With %1$s, You can choose from multiple unique demos, specially designed for you, that can be installed with a single click. You just need to choose your favourite, and we will take care of everything else', 'access-demo-importer' ), $theme_name); ?></p>
 
                 </div>
 

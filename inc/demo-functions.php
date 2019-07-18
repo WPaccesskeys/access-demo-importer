@@ -243,7 +243,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 
 			 ?>
 
-			<div id="adi-demo-plugins" class="ap-active">
+			<div id="adi-demo-plugins" class="ap-active ad-popup-common">
 				<div class="demo-title-wrapp">
 					<h2 class="title"><?php echo  esc_html( $demo_name ); ?></h2>
 					<a href="#" class="adi-demo-popup-close"><span class="dashicons dashicons-no-alt"></span></a>
@@ -273,7 +273,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 				<a class="adi-button adi-plugins-next" href="#"><?php esc_html_e( 'next step', 'access-demo-importer' ); ?></a>
 
 			</div>
-			<div class="ap-importer-form-wrapper ap-hidden">
+			<div class="ap-importer-form-wrapper ap-hidden ad-popup-common">
 				<div class="demo-title-wrapp">
 					<h2 class="title"><?php echo  esc_html( $demo_name ); ?></h2>
 					<a href="#" class="adi-demo-popup-close"><span class="dashicons dashicons-no-alt"></span></a>
@@ -351,7 +351,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			</form>
 			</div>
 
-			<div class="adi-loader ap-hidden">
+			<div class="adi-loader ap-hidden ad-popup-common">
 				<h2 class="title"><?php esc_html_e( 'The import process could take some time, please be patient', 'access-demo-importer' ); ?></h2>
 				<p class="policy-notice">
 					<strong><?php esc_html_e('Note:','access-demo-importer'); ?> </strong>
