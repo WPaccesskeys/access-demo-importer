@@ -252,7 +252,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 
 					<div class="adi-required-plugins-wrap">
 						<h3><?php esc_html_e( 'Required Plugins', 'access-demo-importer' ); ?></h3>
-						<p><?php esc_html_e( 'Install & activate following plugins to import the demo perfectly.','access-demo-importer' ); ?></p>
+						<p><?php esc_html_e( 'The following plugins are required for the theme to look exactly like the demo, so please install and activate them. ','access-demo-importer' ); ?></p>
 						<?php if( $premium || $free ){ ?>
 						<div class="adi-required-plugins oe-plugin-installer clearfix">
 							<div class="msg-wrapp">
@@ -287,7 +287,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 					<div class="import-notice">
 						<strong><i class="dashicons dashicons-info"></i><?php esc_html_e('Note:','access-demo-importer'); ?></strong>
 						<p>
-						<?php esc_html_e('We recommend you backup your website content before attempting a full site import.','access-demo-importer'); ?>
+						<?php esc_html_e('If your website already has content or is already in use, we recommend you to backup your website content before attempting a full site import.','access-demo-importer'); ?>
 						</p>
 					</div>
 
@@ -352,10 +352,10 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			</div>
 
 			<div class="adi-loader ap-hidden ad-popup-common">
-				<h2 class="title"><?php esc_html_e( 'The import process could take some time, please be patient', 'access-demo-importer' ); ?></h2>
+				<h2 class="title"><?php esc_html_e( 'Demo installation will take some time, have patience.', 'access-demo-importer' ); ?></h2>
 				<p class="policy-notice">
 					<strong><?php esc_html_e('Note:','access-demo-importer'); ?> </strong>
-					<?php esc_html_e('Some of the images might be replaced with dummy images to prevent copyright policy.','access-demo-importer'); ?>
+					<?php esc_html_e('Some of the copy right images will be replaced by place holders.','access-demo-importer'); ?>
 				</p>
 				<div class="adi-import-status adi-popup-text"></div>
 			</div>
@@ -673,6 +673,8 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 
 			die();
 		}
+
+
 
 		/**
 		 * Import widgets
