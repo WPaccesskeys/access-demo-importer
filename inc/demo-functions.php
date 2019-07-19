@@ -19,11 +19,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 				return;
 			}
 
-			// Import demos page
-			/*if ( version_compare( PHP_VERSION, '5.4', '>=' ) ) {
-				require_once( ADI_PATH .'/inc/importers/class-helpers.php' );
-				
-			}*/
+		
 
 			// Disable WooCommerce Wizard
 			add_filter( 'woocommerce_enable_setup_wizard', '__return_false' );
@@ -106,7 +102,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 		 */
 		public static function get_demos_data() {
 			
-			$git_url  	= 'https://raw.githubusercontent.com/WPaccesskeys/'.get_template().'-demos/master/config.json';
+			$git_url  	= 'https://raw.githubusercontent.com/WPaccesskeys/WPaccesskeys.github.io/master/theme-demos/'.get_template().'-demos/config.json';
 			$git_url 	= apply_filters('adi_git_config_location', $git_url );
 
 			$data 		= ADI_Demos_Helpers::get_remote( $git_url );

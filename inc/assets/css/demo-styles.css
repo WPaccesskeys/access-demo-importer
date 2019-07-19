@@ -906,6 +906,27 @@ body.adi-demo-overflow{
     margin-right: 15px;
     vertical-align: middle;
 }
+.adi-reset-progress {
+    text-align: center;
+}
+.loader-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    border: 2px solid #fff;
+    border-right-color: red;
+    border-left-color: red;
+    margin: 0 auto;
+    -webkit-animation: rotate-spin  3s infinite linear;
+       -moz-animation: rotate-spin  3s infinite linear;
+         -o-animation: rotate-spin  3s infinite linear;
+            animation: rotate-spin  3s infinite linear;
+}
+
+.reset-info {
+    margin-bottom: 20px;
+}
+
 @media screen and (max-width: 1368px){
     .demos-top-title-wrapp li{
         font-size: 14px;
