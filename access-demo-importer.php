@@ -264,7 +264,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                     <iframe id="adi-popup-preview" src="" width="100%" height="100%"></iframe>
                 </div>
 
-                <div class="adi-demo-confirm-message" style="display: none;">
+                <div class="adi-demo-confirm-message">
                     <div class="conf-msg">
                     <?php esc_html_e('Are you sure? This will reset your databse and the process can\'t  be reversed.','access-demo-importer' ); ?>
                     </div>
