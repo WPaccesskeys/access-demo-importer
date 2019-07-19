@@ -51,6 +51,7 @@
 			$( document ).on( 'click'						, '.demo-content-wrapper .preview-btn, .demo-content-wrapper .adi-preview-url',this.demoIframeLoad);
 			$( document ).on( 'click'						, '.adi-popup-preview .close-popup',this.demoIframeClose);
 			$( document ).on( 'click' 						, '.install-now', this.installNow );
+			$( document ).on( 'click'						, '.adi-reset-database-wrapper a.adi-db-reset',this.dbResetOpen);
 			$( document ).on( 'click' 						, '.install-offline', this.installProPlugins );
 			$( document ).on( 'click' 						, '.activate-now', this.activatePlugins );
 			$( document ).on( 'wp-plugin-install-success'	, this.installSuccess );
@@ -135,6 +136,11 @@
 			var popupDiv = $('.adi-popup-preview');
 			popupDiv.find('iframe').attr('src',srcUrl);
 			$('.adi-popup-preview').addClass('import-php');
+		},
+
+		//db reset popop open
+		dbResetOpen: function(e){
+			$('.adi-demo-confirm-message').addClass('active');
 		},
 
 		// Run popup.
@@ -385,19 +391,17 @@
 
 				// Check if the current item in the iteration is in the list of importable content
 				var contentIndex = $.inArray( this.importData[ key ][ 'input_name' ], importData.contentToImport );
-				//console.log(contentIndex);
-				//console.log(this.importData[ key ][ 'input_name' ]);
-				//console.log(importData.contentToImport);
+				
 
 				// If it is:
 				if ( contentIndex !== -1 ) {
 
 					// Get a reference to the current content
 					currentContent = key;
-					//console.log(currentContent);
+					
 					var contentDisp = this.importData;
 					var demoTextsContent = contentDisp[currentContent]['loader'];
-					//console.log(contentDisp[currentContent]['loader']);
+					
 					$( '.adi-import-status' ).append( '<p class="adi-importing-text demo-id'+currentContent+'"><span class="dashicons dashicons-backup"></span>' + demoTextsContent + '</p>' );
 
 				}
@@ -417,9 +421,7 @@
 			$( '.preview-icon' ).hide();
 			$( '.preview-all' ).hide();
 
-			// Hide demo popup
-			//$( '#adi-demo-popup-wrap' ).fadeOut();
-
+			
 			// Remove content in the popup
 			setTimeout( function() {
 				$('#adi-demo-popup-wrap').removeClass('ap-popup-show');
@@ -468,10 +470,24 @@
 		installProPlugins: function(e){
 			e.preventDefault();
 
-			var el = $(this);
+			var $button 			= $( e.target ),
+			 	el 					= $(this),
+			 	pluginCurrentClass 	= $('.adi-required-plugins button');
+
+		 	if ( $button.hasClass( 'updating-message' ) || $button.hasClass( 'button-disabled' ) ) {
+				return;
+			}
 
 			var is_loading = true;
 			el.addClass('updating-message');
+
+			//disable activating plugins if one plugin is in process
+			if( $button.hasClass('updating-message') ){
+				if( pluginCurrentClass.hasClass('activate-now') || pluginCurrentClass.hasClass('install-now') ){
+					pluginCurrentClass.addClass('button-disabled');
+					$button.removeClass('button-disabled');
+				}
+			}
 
 			var file_location 	= el.attr('data-href');
 			var file 			= el.attr('data-file');
@@ -496,6 +512,9 @@
 
 						el.attr('class', 'button disabled');
 						el.html(accessLoc.button_activated);
+						if( pluginCurrentClass.hasClass('activate-now') || pluginCurrentClass.hasClass('install-now') ){
+							pluginCurrentClass.removeClass('button-disabled');	
+						}
 
 					}
 
@@ -510,20 +529,34 @@
 
 		},
 
+
+
 		// Activate required plugins.
 		activatePlugins: function( e ) {
 			e.preventDefault();
 
 			// Vars
-			var $button = $( e.target ),
-			$init 	= $button.data( 'init' ),
-			$slug 	= $button.data( 'slug' );
+			var $button 		= $( e.target ),
+			$init 				= $button.data( 'init' ),
+			$slug 				= $button.data( 'slug' ),
+			pluginCurrentClass 	= $('.adi-required-plugins button');
+			
+			
+
 
 			if ( $button.hasClass( 'updating-message' ) || $button.hasClass( 'button-disabled' ) ) {
 				return;
 			}
 
 			$button.addClass( 'updating-message button-primary' ).html( accessLoc.button_activating );
+			
+			//disable activating plugins if one plugin is in process
+			if( $button.hasClass('updating-message') ){
+				if( pluginCurrentClass.hasClass('activate-now') || pluginCurrentClass.hasClass('install-now') ){
+					pluginCurrentClass.addClass('button-disabled');
+					$button.removeClass('button-disabled');
+				}
+			}
 
 			$.ajax( {
 				url: accessLoc.ajaxurl,
@@ -541,6 +574,10 @@
 					.addClass( 'disabled' )
 					.text( accessLoc.button_active );
 
+
+					if( pluginCurrentClass.hasClass('activate-now') || pluginCurrentClass.hasClass('install-now') ){
+						pluginCurrentClass.removeClass('button-disabled');	
+					}
 						//window.location.reload();
 					}
 

@@ -270,7 +270,10 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 
 				</div>
 
-				<a class="adi-button adi-plugins-next" href="#"><?php esc_html_e( 'next step', 'access-demo-importer' ); ?></a>
+				<a class="adi-button adi-plugins-next" href="#">
+					<?php esc_html_e( 'next step', 'access-demo-importer' ); ?>
+					<span class="dashicons dashicons-arrow-right-alt2"></span>
+				</a>
 
 			</div>
 			<div class="ap-importer-form-wrapper ap-hidden ad-popup-common">
@@ -385,10 +388,13 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			foreach ( $plugins as $key => $plugin ) {
 
 				$api = array(
-					'slug' 		=> isset( $plugin['slug'] ) ? $plugin['slug'] : '',
-					'init' 		=> isset( $plugin['init'] ) ? $plugin['init'] : '',
-					'name' 		=> isset( $plugin['name'] ) ? $plugin['name'] : '',
+					'slug' 		=> isset( $plugin['slug']  ) ? $plugin['slug']  : '',
+					'init' 		=> isset( $plugin['init']  ) ? $plugin['init']  : '',
+					'name' 		=> isset( $plugin['name']  ) ? $plugin['name']  : '',
+					'class'		=> isset( $plugin['class'] ) ? $plugin['class'] : '',
 				);
+
+				
 
 				if ( ! is_wp_error( $api ) ) { // confirm error free
 
@@ -420,6 +426,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 							$plugin_zip 	= 'https://accesspressthemes.com/plugin-repo/'.$api['slug'].'/'.$api['slug'].'.zip';
 							$get_pl_file 	= explode('/',$plugin['init']);
 							$main_file 		= $get_pl_file[1];
+							
 							?>
 							<button class="install-offline button" data-host-type="remote" data-file="<?php echo $main_file; ?>" data-class="<?php echo $api['class']; ?>" data-slug="<?php echo $api['slug']; ?>" data-href="<?php echo esc_url($plugin_zip); ?>"><?php esc_html_e('Install Now','access-demo-importer');?></button>
 						<?php
