@@ -51,7 +51,7 @@
 			$( document ).on( 'click'						, '.demo-content-wrapper .preview-btn, .demo-content-wrapper .adi-preview-url',this.demoIframeLoad);
 			$( document ).on( 'click'						, '.adi-popup-preview .close-popup',this.demoIframeClose);
 			$( document ).on( 'click' 						, '.install-now', this.installNow );
-			$( document ).on( 'click'						, '.adi-reset-database-wrapper a.adi-db-reset',this.dbResetOpen);
+			$( document ).on( 'click'						, '.adi-reset-database-wrapper a.adi-db-reset,a.adi-reset-cancel',this.dbResetBoxToggle);
 			$( document ).on( 'click' 						, '.install-offline', this.installProPlugins );
 			$( document ).on( 'click' 						, '.activate-now', this.activatePlugins );
 			$( document ).on( 'wp-plugin-install-success'	, this.installSuccess );
@@ -138,9 +138,9 @@
 			$('.adi-popup-preview').addClass('import-php');
 		},
 
-		//db reset popop open
-		dbResetOpen: function(e){
-			$('.adi-demo-confirm-message').addClass('active');
+		//db reset popop open and close 
+		dbResetBoxToggle: function(e){
+			$('.adi-demo-confirm-message').toggleClass('active');
 		},
 
 		// Run popup.
