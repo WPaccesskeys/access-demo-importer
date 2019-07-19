@@ -87,6 +87,10 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
             add_action('adi_display_demos',array($this,'adi_display_demos') );
             add_action( 'admin_menu', array( $this, 'adi_register_menu' ) );
 
+            //ajax actions for db reset    
+            add_action( 'wp_ajax_adi_demo_data_reset', array( $this, 'adi_demo_data_reset' ) );
+            add_action( 'wp_ajax_nopriv_adi_demo_data_reset', array( $this, 'adi_demo_data_reset' ) );
+
             add_filter( 'pt-ocdi/import_files', array( $this, 'adi_ocdi_import_files') );
             add_action( 'pt-ocdi/after_import', array( $this, 'adi_ocdi_after_import') );
             
@@ -151,6 +155,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                     'button_active'             => esc_html__( 'Active', 'access-demo-importer' ),
                     'button_activated'          => esc_html__( 'Activated', 'access-demo-importer' ),
                     'plugin_activate_info'      => esc_html__( 'Please install & activate all plugins first', 'access-demo-importer' ),
+                    'reset_success'             => esc_html__( 'Data reset successful, the page is being reloaded.','access-demo-importer'),
                 ) );
 
             }
@@ -220,7 +225,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                             </div>
                         <?php } }
 
-//pro demos 
+                        //pro demos 
                         $pro_demos = isset($demos['premium_demos']) ? $demos['premium_demos'] : '';
 
                         if( $pro_demos ):
@@ -251,7 +256,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                     </div>
                     
                 </div>
-                <?php $this->adi_demo_data_reset(); 
+                <?php $this->adi_demo_data_reset_html(); 
             }
 
             public function adi_display_demo_iframe(){ ?>
@@ -266,27 +271,36 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
 
                 <div class="adi-demo-confirm-message">
                     <div class="adi-msg-wrapp">
-                        <div class="conf-msg">
-                            <span class="conf-icon">?</span>
-                            <h2><?php esc_html_e('Are you sure you want to proceed ?','access-demo-importer' ); ?></h2>
-                            <div class="reset-info-sm">
-                                <?php esc_html_e('This will reset your databse and the process can\'t  be reversed','access-demo-importer');?>    
+                        <div class="adi-msg-btn-wrapp">
+                            <div class="conf-msg">
+                                <span class="conf-icon">?</span>
+                                <h2><?php esc_html_e('Are you sure you want to proceed ?','access-demo-importer' ); ?></h2>
+                                <div class="reset-info-sm">
+                                    <?php esc_html_e('This will reset your databse and the process can\'t  be reversed','access-demo-importer');?>    
+                                </div>
+
                             </div>
-                            
+                            <div class="adi-confirm">
+                                <a href="javascript:void(0)" class="adi-reset-confrm"><?php esc_html_e('Confirm','access-demo-importer'); ?></a>
+                                <a href="javascript:void(0)" class="adi-reset-cancel"><?php esc_html_e('Cancel','access-demo-importer'); ?></a>
+                            </div>
                         </div>
-                        <div class="adi-confirm">
-                            <a href="#" class="adi-reset-confrm"><?php esc_html_e('Confirm','access-demo-importer'); ?></a>
-                            <a href="#" class="adi-reset-cancel"><?php esc_html_e('Cancel','access-demo-importer'); ?></a>
+
+                        <div class="adi-reset-progress" style="display: none;">
+                            <div class="reset-info"><?php esc_html_e('Reset is in progress please wait...','access-demo-importer'); ?></div>
+                            <div class="loader-icon"></div>
                         </div>
+
                     </div>
+
                 </div>
 
                 <?php
             }
 
 
-            //database reset
-            public function adi_demo_data_reset(){
+            //database reset buttons
+            public function adi_demo_data_reset_html(){
                 ?>
                 <div class="adi-reset-database-wrapper">
                     <div class="inner-wrapp">
@@ -299,92 +313,204 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                 <?php
             }
 
+            //reset database 
+            function adi_demo_data_reset() {
 
-     //compatible for OCDI 
-            public function adi_ocdi_import_files() {
-
-                $demos = ADI_Demos::get_demos_data();
-                if( empty($demos)){
+                if ( ! current_user_can( 'manage_options' ) ) {
                     return;
                 }
 
-                $demos_data = array();
-                foreach( $demos as $demo ){
+                global $wpdb;
+                $options = array(
+                    'offset' => 0,
+                    'orderby' => 'post_date',
+                    'order' => 'DESC',
+                    'post_type' => 'post',
+                    'post_status' => 'publish'
+                );
 
-                    $screen         = isset( $demo['screen'] )            ? $demo['screen']           : '';
-                    $demo_name      = isset( $demo['demo_name'] )         ? $demo['demo_name']        : '';
-                    $preview_url    = isset( $demo['preview_url'] )       ? $demo['preview_url']      : '';
-                    $xml_file       = isset( $demo['xml_file'] )          ? $demo['xml_file']         : '';
-                    $theme_settings = isset( $demo['theme_settings'] )    ? $demo['theme_settings']   : '';
-                    $widgets_file   = isset( $demo['widgets_file'] )      ? $demo['widgets_file']     : '';
-                    $rev_slider     = isset( $demo['rev_slider'] )        ? $demo['rev_slider']       : '';
-                    $import_redux   = isset( $demo['import_redux'] )      ? $demo['import_redux']     : '';
-                    $redux_array    = '';
-                    if( $import_redux ){
-                        $option_filepath    = isset( $import_redux['file_url'] ) ? $import_redux['file_url'] : '';
-                        $option_name        = isset( $import_redux['option_name'] ) ? $import_redux['option_name'] : '';
+                $statuses = array( 'publish', 'future', 'draft', 'pending', 'private', 'trash', 'inherit', 'auto-draft', 'scheduled' );
+                $types = array(
+                    'post',
+                    'page',
+                    'attachment',
+                    'nav_menu_item',
+                    'wpcf7_contact_form',
+                    'product',
+                    'portfolio',
+                    'testimonial',
+                    'team'
+                );
 
-                        $redux_array =  array(array(
-                            'file_url'    => $option_filepath,
-                            'option_name' => $option_name,
-                        ));
-                    }
+                // delete posts
+                foreach ( $types as $type ) {
+                    foreach ( $statuses as $status ) {
+                        $options[ 'post_type' ] = $type;
+                        $options[ 'post_status' ] = $status;
 
-                    $demos_data[] =
-                    array(
-                        'import_file_name'           => $demo_name,
-                        'import_file_url'            => $xml_file,
-                        'import_widget_file_url'     => $widgets_file,
-                        'import_customizer_file_url' => $theme_settings,
-                        'import_redux'               => $redux_array,
-                        'import_preview_image_url'   => $screen,
-                        'preview_url'                => $preview_url,
-                    );
-
-
-                    if( $import_redux ){
-                        $demos_data['import_redux']  = $redux_array;
-                    }
-
-
-
-                }
-                return $demos_data;
-
-            }
-
-            public function adi_ocdi_after_import( $selected_import ) {
-
-                $demos = ADI_Demos::get_demos_data();
-                if( empty($demos)){
-                    return;
-                }
-
-                foreach( $demos as $demo ){
-                    $demo_name       = isset( $demo['demo_name'] )         ? $demo['demo_name']        : '';
-                    $menus           = isset( $demo['menus'] )              ? $demo['menus']             : '';
-                    $home_title      = isset( $demo['home_title'] )         ? $demo['home_title']        : '';
-
-                    if( $selected_import['import_file_name'] == $demo_name ){
-
-                        foreach( $menus as $key => $menu ){
-                            $main_menu = get_term_by( 'name', $menus, 'nav_menu' );
-
-                            set_theme_mod( 'nav_menu_locations', array(
-                                $key => $main_menu->term_id,
-                            ));    
+                        $posts = get_posts( $options );
+                        $offset = 0;
+                        while ( count( $posts ) > 0 ) {
+                            if ( $offset == 10 ) {
+                                break;
+                            }
+                            $offset++;
+                            foreach ( $posts as $post ) {
+                                wp_delete_post( $post->ID, true );
+                            }
+                            $posts = get_posts( $options );
                         }
-
-                        $front_page_id = get_page_by_title( $home_title );
-
-                        update_option( 'show_on_front', 'page' );
-                        update_option( 'page_on_front', $front_page_id->ID );
-
                     }
                 }
 
 
+                // Delete categories, tags, etc
+                $taxonomies_array = array( 'category', 'post_tag', 'portfolio-category', 'testimonial-category', 'team-category', 'nav_menu', 'product_cat' );
+                foreach ( $taxonomies_array as $tax ) {
+                    $cats = get_terms( $tax, array( 'hide_empty' => false, 'fields' => 'ids' ) );
+                    foreach ( $cats as $cat ) {
+                        wp_delete_term( $cat, $tax );
+                    }
+                }
+
+
+                // Delete Slider Revolution Sliders
+                if ( class_exists( 'RevSlider' ) ) {
+                    $sliderObj = new RevSlider();
+                    foreach ( $sliderObj->getArrSliders() as $slider ) {
+                        $slider->initByID( $slider->getID() );
+                        $slider->deleteSlider();
+                    }
+                }
+
+                // Delete Widgets
+                global $wp_registered_widget_controls;
+
+                $widget_controls = $wp_registered_widget_controls;
+
+                $available_widgets = array();
+
+                foreach ( $widget_controls as $widget ) {
+                if ( !empty( $widget[ 'id_base' ] ) && !isset( $available_widgets[ $widget[ 'id_base' ] ] ) ) { // no dupes
+                    $available_widgets[] = $widget[ 'id_base' ];
+                }
+
+
             }
+
+            update_option( 'sidebars_widgets', array( 'wp_inactive_widgets' => array() ) );
+            foreach ( $available_widgets as $widget_data ) {
+                update_option( 'widget_' . $widget_data, array() );
+            }
+
+
+            //Clear "uploads" folder
+            $this->adi_clear_uploads( $this->uploads_dir[ 'basedir' ] );
+
+            // this is required to return a proper result
+            die();
+        }
+
+        /**
+         * Clear "uploads" folder
+         * @param string $dir
+         * @return bool
+         */
+        private function adi_clear_uploads( $dir ) {
+            $files = array_diff( scandir( $dir ), array( '.', '..' ) );
+            foreach ( $files as $file ) {
+                ( is_dir( "$dir/$file" ) ) ? $this->adi_clear_uploads( "$dir/$file" ) : unlink( "$dir/$file" );
+            }
+
+            return ( $dir != $this->uploads_dir[ 'basedir' ] ) ? rmdir( $dir ) : true;
+        }
+
+
+            //compatible for OCDI 
+        public function adi_ocdi_import_files() {
+
+            $demos = ADI_Demos::get_demos_data();
+            if( empty($demos)){
+                return;
+            }
+
+            $demos_data = array();
+            foreach( $demos as $demo ){
+
+                $screen         = isset( $demo['screen'] )            ? $demo['screen']           : '';
+                $demo_name      = isset( $demo['demo_name'] )         ? $demo['demo_name']        : '';
+                $preview_url    = isset( $demo['preview_url'] )       ? $demo['preview_url']      : '';
+                $xml_file       = isset( $demo['xml_file'] )          ? $demo['xml_file']         : '';
+                $theme_settings = isset( $demo['theme_settings'] )    ? $demo['theme_settings']   : '';
+                $widgets_file   = isset( $demo['widgets_file'] )      ? $demo['widgets_file']     : '';
+                $rev_slider     = isset( $demo['rev_slider'] )        ? $demo['rev_slider']       : '';
+                $import_redux   = isset( $demo['import_redux'] )      ? $demo['import_redux']     : '';
+                $redux_array    = '';
+                if( $import_redux ){
+                    $option_filepath    = isset( $import_redux['file_url'] ) ? $import_redux['file_url'] : '';
+                    $option_name        = isset( $import_redux['option_name'] ) ? $import_redux['option_name'] : '';
+
+                    $redux_array =  array(array(
+                        'file_url'    => $option_filepath,
+                        'option_name' => $option_name,
+                    ));
+                }
+
+                $demos_data[] =
+                array(
+                    'import_file_name'           => $demo_name,
+                    'import_file_url'            => $xml_file,
+                    'import_widget_file_url'     => $widgets_file,
+                    'import_customizer_file_url' => $theme_settings,
+                    'import_redux'               => $redux_array,
+                    'import_preview_image_url'   => $screen,
+                    'preview_url'                => $preview_url,
+                );
+
+
+                if( $import_redux ){
+                    $demos_data['import_redux']  = $redux_array;
+                }
+
+
+
+            }
+            return $demos_data;
+
+        }
+
+        public function adi_ocdi_after_import( $selected_import ) {
+
+            $demos = ADI_Demos::get_demos_data();
+            if( empty($demos)){
+                return;
+            }
+
+            foreach( $demos as $demo ){
+                $demo_name       = isset( $demo['demo_name'] )         ? $demo['demo_name']        : '';
+                $menus           = isset( $demo['menus'] )              ? $demo['menus']             : '';
+                $home_title      = isset( $demo['home_title'] )         ? $demo['home_title']        : '';
+
+                if( $selected_import['import_file_name'] == $demo_name ){
+
+                    foreach( $menus as $key => $menu ){
+                        $main_menu = get_term_by( 'name', $menus, 'nav_menu' );
+
+                        set_theme_mod( 'nav_menu_locations', array(
+                            $key => $main_menu->term_id,
+                        ));    
+                    }
+
+                    $front_page_id = get_page_by_title( $home_title );
+
+                    update_option( 'show_on_front', 'page' );
+                    update_option( 'page_on_front', $front_page_id->ID );
+
+                }
+            }
+
+
+        }
 
 
         /**
@@ -392,13 +518,13 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
         *
         */
         public function adi_register_menu() {
-           $title = esc_html__('Install Demos','access-demo-importer');
-           add_theme_page( $title, $title , 'edit_theme_options', 'demo-importer', array( $this, 'adi_display_demos' ));
-       }
+         $title = esc_html__('Install Demos','access-demo-importer');
+         add_theme_page( $title, $title , 'edit_theme_options', 'demo-importer', array( $this, 'adi_display_demos' ));
+     }
 
 
 
-   }
+ }
 
 }
 
