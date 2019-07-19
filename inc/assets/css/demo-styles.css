@@ -788,7 +788,124 @@ body.adi-demo-overflow{
     width: 60%;
     margin: 0 auto;
 }
+.adi-demo-confirm-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.3s ease;
+       -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+         -o-transition: all 0.3s ease;
+            transition: all 0.3s ease; 
+    -webkit-backface-visibility: hidden;
+          -moz-backface-visibility: hidden;
+               backface-visibility: hidden;   
+}
+.adi-demo-confirm-message.active{
+    opacity: 1;
+    visibility: visible;
+    
+}
+.adi-demo-confirm-message .adi-msg-wrapp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);    
+    background: #fff;    
+    padding: 50px;
+    box-sizing: border-box;
+    -webkit-transform: scale(0) translate(-50%,-50%) translateZ(0);
+       -moz-transform: scale(0) translate(-50%,-50%) translateZ(0);
+        -ms-transform: scale(0) translateZ(0);
+         -o-transform: scale(0) translate(-50%,-50%) translateZ(0);
+            transform: scale(0) translate(-50%,-50%) translateZ(0);
+    -webkit-transition: all 0.5s ease;
+       -moz-transition: all 0.5s ease;
+        -ms-transition: all 0.5s ease;
+         -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+    -webkit-backface-visibility: hidden;
+       -moz-backface-visibility: hidden;
+            backface-visibility: hidden;
+}
+.adi-demo-confirm-message.active .adi-msg-wrapp{
+    -webkit-transform: scale(1) translate(-50%,-50%) translateZ(0);
+       -moz-transform: scale(1) translate(-50%,-50%) translateZ(0);
+        -ms-transform: scale(1) translate(-50%,-50%) translateZ(0);
+         -o-transform: scale(1) translate(-50%,-50%) translateZ(0);
+            transform: scale(1) translate(-50%,-50%) translateZ(0);
+}
+.adi-demo-confirm-message .adi-confirm {
+    text-align: center;
+    display: block;
+    margin-top: 40px;
+}
+.adi-demo-confirm-message a.adi-reset-confrm {
+    text-decoration: none;
+    background-color: rgb(221, 48, 54);
+    color: #fff;
+    padding: 12px 22px;
+    margin-right: 20px;
+    font-size: 15px;
+    border-radius: 5px;
+}
+.adi-demo-confirm-message a.adi-reset-cancel {
+    text-decoration: none;
+    background-color: rgb(191, 189, 189);
+    color: #fff;
+    padding: 12px 22px;
+    margin-right: 20px;
+    font-size: 15px;
+    border-radius: 5px;
+}
+.adi-demo-confirm-message .reset-info-sm {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+.adi-demo-confirm-message h2 {
+    font-size: 35px;
+    font-weight: 800;
+    line-height: 40px;
+    margin: 20px 0;
+    color: #545659;
+}
 
+.adi-demo-confirm-message span.conf-icon {
+        font-size: 80px;
+    border: 4px solid #d9e7e6;
+    border-radius: 100%;
+    height: 100px;
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+    line-height: 100px;
+    color: #727272;
+}
+.adi-demo-confirm-message a.adi-reset-confrm:hover{
+    background: rgb(195, 41, 46);
+}
+.adi-demo-confirm-message a.adi-reset-cancel:hover{
+    background: rgb(166, 165, 165);
+}
+.adi-demo-confirm-message .conf-msg {
+    text-align: center;
+}
+.adi-reset-database-wrapper {
+    margin-top: 20px;
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    font-size: 15px;
+}
+.adi-reset-database-wrapper a.button.button-primary.adi-db-reset {
+    margin-right: 15px;
+    vertical-align: middle;
+}
 @media screen and (max-width: 1368px){
     .demos-top-title-wrapp li{
         font-size: 14px;
