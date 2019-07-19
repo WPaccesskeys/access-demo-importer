@@ -265,12 +265,14 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                 </div>
 
                 <div class="adi-demo-confirm-message">
-                    <div class="conf-msg">
-                    <?php esc_html_e('Are you sure? This will reset your databse and the process can\'t  be reversed.','access-demo-importer' ); ?>
-                    </div>
-                    <div class="adi-confirm">
-                        <a href="#" class="adi-reset-confrm"><?php esc_html_e('Confirm','access-demo-importer'); ?></a>
-                        <a href="#" class="adi-reset-cancel"><?php esc_html_e('Cancel','access-demo-importer'); ?></a>
+                    <div class="adi-msg-wrapp">
+                        <div class="conf-msg">
+                            <?php esc_html_e('Are you sure? This will reset your databse and the process can\'t  be reversed.','access-demo-importer' ); ?>
+                        </div>
+                        <div class="adi-confirm">
+                            <a href="#" class="adi-reset-confrm"><?php esc_html_e('Confirm','access-demo-importer'); ?></a>
+                            <a href="#" class="adi-reset-cancel"><?php esc_html_e('Cancel','access-demo-importer'); ?></a>
+                        </div>
                     </div>
                 </div>
 
@@ -385,13 +387,13 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
         *
         */
         public function adi_register_menu() {
-         $title = esc_html__('Install Demos','access-demo-importer');
-         add_theme_page( $title, $title , 'edit_theme_options', 'demo-importer', array( $this, 'adi_display_demos' ));
-     }
+           $title = esc_html__('Install Demos','access-demo-importer');
+           add_theme_page( $title, $title , 'edit_theme_options', 'demo-importer', array( $this, 'adi_display_demos' ));
+       }
 
 
 
- }
+   }
 
 }
 
