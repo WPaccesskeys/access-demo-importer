@@ -926,7 +926,11 @@ body.adi-demo-overflow{
 .reset-info {
     margin-bottom: 20px;
 }
-
+.demo_import .info-wrapper {
+   padding: 0 5px;
+   width: 100%;
+   margin: 0 auto;
+}
 @media screen and (max-width: 1368px){
     .demos-top-title-wrapp li{
         font-size: 14px;
@@ -951,7 +955,11 @@ body.adi-demo-overflow{
     }
 }
 @media screen and (max-width: 992px){
-
+    .info-wrapper {
+   padding: 0 5px;
+   width: 100%;
+   margin: 0 auto;
+}
 }
 @media screen and (max-width: 800px){
  .demos-wrapper .demo{
