@@ -267,7 +267,12 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                 <div class="adi-demo-confirm-message">
                     <div class="adi-msg-wrapp">
                         <div class="conf-msg">
-                            <?php esc_html_e('Are you sure? This will reset your databse and the process can\'t  be reversed.','access-demo-importer' ); ?>
+                            <span class="conf-icon">?</span>
+                            <h2><?php esc_html_e('Are you sure you want to proceed ?','access-demo-importer' ); ?></h2>
+                            <div class="reset-info-sm">
+                                <?php esc_html_e('This will reset your databse and the process can\'t  be reversed','access-demo-importer');?>    
+                            </div>
+                            
                         </div>
                         <div class="adi-confirm">
                             <a href="#" class="adi-reset-confrm"><?php esc_html_e('Confirm','access-demo-importer'); ?></a>
