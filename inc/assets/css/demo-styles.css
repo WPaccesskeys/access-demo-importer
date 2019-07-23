@@ -932,6 +932,9 @@ body.adi-demo-overflow{
    margin: 0 auto;
 }
 @media screen and (max-width: 1368px){
+    .popup-wrapp-outter .ap-active{
+        height: 585px;
+    }
     .demos-top-title-wrapp li{
         font-size: 14px;
     }
