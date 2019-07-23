@@ -138,10 +138,10 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
          */
         public static function scripts( $hook_suffix ) {
 
-            if ( ('appearance_page_demo-importer' == $hook_suffix) || ('appearance_page_welcome-page' == $hook_suffix) ) {
+            // CSS
+            wp_enqueue_style( 'adi-demos-style', ADI_ASSETS_URL. 'css/demo-styles.css' );
 
-                // CSS
-                wp_enqueue_style( 'adi-demos-style', ADI_ASSETS_URL. 'css/demo-styles.css' );
+            if ( ('appearance_page_demo-importer' == $hook_suffix) || ('appearance_page_welcome-page' == $hook_suffix) ) {
 
                 // JS
                 wp_enqueue_script( 'adi-demos-js', ADI_ASSETS_URL. 'js/demos.js', array( 'jquery', 'wp-util', 'updates' ), ADI_VERSION, true );
