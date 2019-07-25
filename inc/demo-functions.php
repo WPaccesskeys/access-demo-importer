@@ -30,9 +30,6 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			// Start things
 			add_action( 'admin_init', array( $this, 'init' ) );
 
-		
-			
-
 			// Allows xml uploads
 			add_filter( 'upload_mimes', array( $this, 'allow_xml_uploads' ) );
 
@@ -52,7 +49,6 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			add_action( 'wp_ajax_adi_ajax_get_demo_data', array( $this, 'ajax_demo_data' ) );
 			add_action( 'wp_ajax_adi_ajax_required_plugins_activate', array( $this, 'ajax_required_plugins_activate' ) );
 
-			
 
 			// Get data to import
 			add_action( 'wp_ajax_adi_ajax_get_import_data', array( $this, 'ajax_get_import_data' ) );
@@ -216,7 +212,8 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			$demos = self::get_demos_data();
 
 			// Get selected demo
-			$demo = $_GET['demo_name'];
+			$demo = sanitize_text_field(wp_unslash($_GET['demo_name']));
+
 
 			
 			$xml_file 		= isset($demos[$demo]['xml_file']) 			? $demos[$demo]['xml_file'] 		: '';
@@ -412,8 +409,8 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 						$button_text 	= esc_html__( 'Activated', 'access-demo-importer' );
 					} ?>
 
-					<div class="adi-plugin adi-clr adi-plugin-<?php echo $api['slug']; ?>" data-slug="<?php echo $api['slug']; ?>" data-init="<?php echo $api['init']; ?>">
-						<div class="plugin-name"><?php echo $api['name']; ?></div>
+					<div class="adi-plugin adi-clr adi-plugin-<?php echo esc_attr($api['slug']); ?>" data-slug="<?php echo esc_attr($api['slug']); ?>" data-init="<?php echo esc_attr($api['init']); ?>">
+						<div class="plugin-name"><?php echo esc_html($api['name']); ?></div>
 
 						<?php
 						// If premium plugins and not installed
@@ -424,10 +421,10 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 							$main_file 		= $get_pl_file[1];
 							
 							?>
-							<button class="install-offline button" data-host-type="remote" data-file="<?php echo $main_file; ?>" data-class="<?php echo $api['class']; ?>" data-slug="<?php echo $api['slug']; ?>" data-href="<?php echo esc_url($plugin_zip); ?>"><?php esc_html_e('Install Now','access-demo-importer');?></button>
+							<button class="install-offline button" data-host-type="remote" data-file="<?php echo esc_attr($main_file); ?>" data-class="<?php echo esc_attr($api['class']); ?>" data-slug="<?php echo esc_attr($api['slug']); ?>" data-href="<?php echo esc_url($plugin_zip); ?>"><?php esc_html_e('Install Now','access-demo-importer');?></button>
 						<?php
 						} else { ?>
-							<button class="<?php echo $button_classes; ?>" data-init="<?php echo $api['init']; ?>" data-slug="<?php echo $api['slug']; ?>" data-name="<?php echo $api['name']; ?>"><?php echo $button_text; ?></button>
+							<button class="<?php echo esc_attr($button_classes); ?>" data-init="<?php echo esc_attr($api['init']); ?>" data-slug="<?php echo esc_attr($api['slug']); ?>" data-name="<?php echo esc_attr($api['name']); ?>"><?php echo esc_html($button_text); ?></button>
 						<?php
 						} ?>
 					</div>
@@ -451,7 +448,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			$host_type 		= isset( $_POST['host_type'] ) ? sanitize_text_field( wp_unslash( $_POST['host_type'] ) ) : '';
 			$plugin_class 	= $plugin['class'] = isset( $_POST['class_name'] ) ? sanitize_text_field( wp_unslash( $_POST['class_name'] ) ) : '';
 			$plugin_slug 	= $plugin['slug'] = isset( $_POST['slug'] ) ? sanitize_text_field( wp_unslash( $_POST['slug'] ) ) : '';
-			$plugin_directory = ABSPATH . 'wp-content/plugins/';
+			$plugin_directory = WP_PLUGIN_DIR;
 
 			$plugin_file = $plugin_slug . '/' . $file;
 
@@ -610,7 +607,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			}
 
 			// Get the selected demo
-			$demo_type 			= $_POST['adi_import_demo'];
+			$demo_type 			= sanitize_text_field(wp_unslash($_POST['adi_import_demo']));
 
 			// Get demos data
 			$demo 				= ADI_Demos::get_demos_data()[ $demo_type ];
@@ -656,7 +653,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			include ADI_PATH . 'inc/importers/class-settings-importer.php';
 
 			// Get the selected demo
-			$demo_type 			= $_POST['adi_import_demo'];
+			$demo_type 			= sanitize_text_field(wp_unslash($_POST['adi_import_demo']));
 
 			// Get demos data
 			$demo 				= ADI_Demos::get_demos_data()[ $demo_type ];
@@ -693,7 +690,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			include ADI_PATH . 'inc/importers/class-widget-importer.php';
 
 			// Get the selected demo
-			$demo_type 			= $_POST['adi_import_demo'];
+			$demo_type 			= sanitize_text_field(wp_unslash($_POST['adi_import_demo']));
 
 			// Get demos data
 			$demo 				= ADI_Demos::get_demos_data()[ $demo_type ];
@@ -725,11 +722,10 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			}
 
 			// Get the selected demo
-			$demo_type 			= $_POST['adi_import_demo'];
+			$demo_type 			= sanitize_text_field(wp_unslash($_POST['adi_import_demo']));
 			$demo 				= ADI_Demos::get_demos_data()[ $demo_type ];
 			$slider_file 		= isset( $demo['rev_slider'] ) ? $demo['rev_slider'] : '';
-
-			$response = ADI_Demos_Helpers::get_remote( $slider_file );
+			$response 			= ADI_Demos_Helpers::get_remote( $slider_file );
 
 			// No sample data found
 			if ( $response === false ) {
@@ -765,7 +761,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 				die( 'This action was stopped for security purposes.' );
 			}
 
-			$demo_type 			= $_POST['adi_import_demo'];
+			$demo_type 			= sanitize_text_field(wp_unslash($_POST['adi_import_demo']));
 			$demo 				= ADI_Demos::get_demos_data()[ $demo_type ];
 			$import_redux 		= isset( $demo['import_redux'] ) ? $demo['import_redux'] : '';
 			$option_filepath 	= '';
@@ -801,7 +797,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			if ( $_POST['adi_import_is_xml'] === 'true' ) {
 
 				// Get the selected demo
-				$demo_type 			= $_POST['adi_import_demo'];
+				$demo_type 			= sanitize_text_field(wp_unslash($_POST['adi_import_demo']));
 
 				// Get demos data
 				$demo 				= ADI_Demos::get_demos_data()[ $demo_type ];

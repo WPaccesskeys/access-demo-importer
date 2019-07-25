@@ -137,12 +137,13 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
          *
          */
         public static function scripts( $hook_suffix ) {
-            
-            $template_slug = 'appearance_page_'.get_template().'welcome-page';
-            // CSS
-            wp_enqueue_style( 'adi-demos-style', ADI_ASSETS_URL. 'css/demo-styles.css' );
 
-            if ( ('appearance_page_demo-importer' == $hook_suffix) || ('appearance_page_welcome-page' == $hook_suffix) || (($template_slug == $hook_suffix)) ) {
+            $template_slug = 'appearance_page_'.get_template().'-welcome-page';
+            
+            if ( ('appearance_page_demo-importer' == $hook_suffix) || ('appearance_page_welcome-page' == $hook_suffix) || ($template_slug == $hook_suffix) ) {
+
+                // CSS
+                wp_enqueue_style( 'adi-demos-style', ADI_ASSETS_URL. 'css/demo-styles.css' );
 
                 // JS
                 wp_enqueue_script( 'adi-demos-js', ADI_ASSETS_URL. 'js/demos.js', array( 'jquery', 'wp-util', 'updates' ), ADI_VERSION, true );
@@ -243,7 +244,7 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                                     <div class="demo-btn-wrapp">
                                         <h4 class="demo-title"><?php echo esc_html($pro_demo['demo_name']); ?></h4> 
                                         <div class="buttons-wrapp">
-                                            <a href="<?php echo esc_url($pro_demo['upgrade_url']);?>" class="button " data-demo-id="<?php echo esc_attr($key); ?>" target="_blank"><?php echo $pro_upgrage; ?></a>
+                                            <a href="<?php echo esc_url($pro_demo['upgrade_url']);?>" class="button " data-demo-id="<?php echo esc_attr($key); ?>" target="_blank"><?php echo esc_html($pro_upgrage); ?></a>
                                             <a href="<?php echo esc_url($pro_demo['preview_url']);?>" class="button preview-btn button-primary" target="_blank"><?php echo esc_html($prev_text); ?></a>
                                         </div>
                                     </div>
@@ -260,138 +261,145 @@ if ( !class_exists( 'Access_Demo_Importer' ) ) {
                 <?php $this->adi_demo_data_reset_html(); 
             }
 
-            public function adi_display_demo_iframe(){ ?>
-                <div  class="adi-popup-preview import-php hidden">                   
-                    <div class="close-popup">
-                        <i class="dashicons dashicons-no-alt"></i>
-                        <span class="prev-close-info"><?php esc_html_e('Close Preview','access-demo-importer'); ?></span>
-                    </div>
-                    <div class="updating-message"></div>
-                    <iframe id="adi-popup-preview" src="" width="100%" height="100%"></iframe>
-                </div>
+            public function adi_display_demo_iframe(){
 
-                <div class="adi-demo-confirm-message">
-                    <div class="adi-msg-wrapp">
-                        <div class="adi-msg-btn-wrapp">
-                            <div class="conf-msg">
-                                <span class="conf-icon">?</span>
-                                <h2><?php esc_html_e('Are you sure you want to proceed ?','access-demo-importer' ); ?></h2>
-                                <div class="reset-info-sm">
-                                    <?php esc_html_e('This will reset your databse and the process can\'t  be reversed','access-demo-importer');?>    
+                $screen         = get_current_screen();  
+                $template_slug  = 'appearance_page_'.get_template().'-welcome-page';
+
+                if ( ('appearance_page_demo-importer' == $screen->id) || ('appearance_page_welcome-page' == $screen->id) || ($template_slug == $screen->id) ) {
+
+                ?>
+                    <div  class="adi-popup-preview import-php hidden">                   
+                        <div class="close-popup">
+                            <i class="dashicons dashicons-no-alt"></i>
+                            <span class="prev-close-info"><?php esc_html_e('Close Preview','access-demo-importer'); ?></span>
+                        </div>
+                        <div class="updating-message"></div>
+                        <iframe id="adi-popup-preview" src="" width="100%" height="100%"></iframe>
+                    </div>
+
+                    <div class="adi-demo-confirm-message">
+                        <div class="adi-msg-wrapp">
+                            <div class="adi-msg-btn-wrapp">
+                                <div class="conf-msg">
+                                    <span class="conf-icon">?</span>
+                                    <h2><?php esc_html_e('Are you sure you want to proceed ?','access-demo-importer' ); ?></h2>
+                                    <div class="reset-info-sm">
+                                        <?php esc_html_e('This will reset your databse and the process can\'t  be reversed','access-demo-importer');?>    
+                                    </div>
+
                                 </div>
-
+                                <div class="adi-confirm">
+                                    <a href="javascript:void(0)" class="adi-reset-confrm"><?php esc_html_e('Confirm','access-demo-importer'); ?></a>
+                                    <a href="javascript:void(0)" class="adi-reset-cancel"><?php esc_html_e('Cancel','access-demo-importer'); ?></a>
+                                </div>
                             </div>
-                            <div class="adi-confirm">
-                                <a href="javascript:void(0)" class="adi-reset-confrm"><?php esc_html_e('Confirm','access-demo-importer'); ?></a>
-                                <a href="javascript:void(0)" class="adi-reset-cancel"><?php esc_html_e('Cancel','access-demo-importer'); ?></a>
-                            </div>
-                        </div>
 
-                        <div class="adi-reset-progress" style="display: none;">
-                            <div class="reset-info"><?php esc_html_e('Reset is in progress please wait...','access-demo-importer'); ?></div>
-                            <div class="loader-icon"></div>
+                            <div class="adi-reset-progress" style="display: none;">
+                                <div class="reset-info"><?php esc_html_e('Reset is in progress please wait...','access-demo-importer'); ?></div>
+                                <div class="loader-icon"></div>
+                            </div>
+
                         </div>
 
                     </div>
 
-                </div>
-
-                <?php
+                <?php }
             }
 
 
             //database reset buttons
-            public function adi_demo_data_reset_html(){
-                ?>
-                <div class="adi-reset-database-wrapper">
-                    <div class="inner-wrapp">
-                        <a href="javascript:void(0)" class="button button-primary adi-db-reset">
-                            <?php esc_html_e('Reset Database','access-demo-importer'); ?>
-                        </a>
-                        <?php  esc_html_e( 'Reset Your Site ? This will reset your site to default again. ', 'access-demo-importer' ); ?>
-                    </div>
+        public function adi_demo_data_reset_html(){
+            ?>
+            <div class="adi-reset-database-wrapper">
+                <div class="inner-wrapp">
+                    <a href="javascript:void(0)" class="button button-primary adi-db-reset">
+                        <?php esc_html_e('Reset Database','access-demo-importer'); ?>
+                    </a>
+                    <?php  esc_html_e( 'Reset Your Site ? This will reset your site to default again. ', 'access-demo-importer' ); ?>
                 </div>
-                <?php
-            }
+            </div>
+            <?php
+        }
 
             //reset database 
-            function adi_demo_data_reset() {
+        function adi_demo_data_reset() {
 
-                if ( ! current_user_can( 'manage_options' ) ) {
-                    return;
-                }
+            if ( ! current_user_can( 'manage_options' ) ) {
+                return;
+            }
 
-                global $wpdb;
-                $options = array(
-                    'offset' => 0,
-                    'orderby' => 'post_date',
-                    'order' => 'DESC',
-                    'post_type' => 'post',
-                    'post_status' => 'publish'
-                );
+            global $wpdb;
+            $options = array(
+                'offset' => 0,
+                'orderby' => 'post_date',
+                'order' => 'DESC',
+                'post_type' => 'post',
+                'post_status' => 'publish'
+            );
 
-                $statuses = array( 'publish', 'future', 'draft', 'pending', 'private', 'trash', 'inherit', 'auto-draft', 'scheduled' );
-                $types = array(
-                    'post',
-                    'page',
-                    'attachment',
-                    'nav_menu_item',
-                    'wpcf7_contact_form',
-                    'product',
-                    'portfolio',
-                    'testimonial',
-                    'team'
-                );
+            $statuses = array( 'publish', 'future', 'draft', 'pending', 'private', 'trash', 'inherit', 'auto-draft', 'scheduled' );
+            $types = array(
+                'post',
+                'page',
+                'attachment',
+                'nav_menu_item',
+                'wpcf7_contact_form',
+                'product',
+                'portfolio',
+                'testimonial',
+                'team'
+            );
 
                 // delete posts
-                foreach ( $types as $type ) {
-                    foreach ( $statuses as $status ) {
-                        $options[ 'post_type' ] = $type;
-                        $options[ 'post_status' ] = $status;
+            foreach ( $types as $type ) {
+                foreach ( $statuses as $status ) {
+                    $options[ 'post_type' ] = $type;
+                    $options[ 'post_status' ] = $status;
 
-                        $posts = get_posts( $options );
-                        $offset = 0;
-                        while ( count( $posts ) > 0 ) {
-                            if ( $offset == 10 ) {
-                                break;
-                            }
-                            $offset++;
-                            foreach ( $posts as $post ) {
-                                wp_delete_post( $post->ID, true );
-                            }
-                            $posts = get_posts( $options );
+                    $posts = get_posts( $options );
+                    $offset = 0;
+                    while ( count( $posts ) > 0 ) {
+                        if ( $offset == 10 ) {
+                            break;
                         }
+                        $offset++;
+                        foreach ( $posts as $post ) {
+                            wp_delete_post( $post->ID, true );
+                        }
+                        $posts = get_posts( $options );
                     }
                 }
+            }
 
 
                 // Delete categories, tags, etc
-                $taxonomies_array = array( 'category', 'post_tag', 'portfolio-category', 'testimonial-category', 'team-category', 'nav_menu', 'product_cat' );
-                foreach ( $taxonomies_array as $tax ) {
-                    $cats = get_terms( $tax, array( 'hide_empty' => false, 'fields' => 'ids' ) );
-                    foreach ( $cats as $cat ) {
-                        wp_delete_term( $cat, $tax );
-                    }
+            $taxonomies_array = array( 'category', 'post_tag', 'portfolio-category', 'testimonial-category', 'team-category', 'nav_menu', 'product_cat' );
+            foreach ( $taxonomies_array as $tax ) {
+                $cats = get_terms( $tax, array( 'hide_empty' => false, 'fields' => 'ids' ) );
+                foreach ( $cats as $cat ) {
+                    wp_delete_term( $cat, $tax );
                 }
+            }
 
 
                 // Delete Slider Revolution Sliders
-                if ( class_exists( 'RevSlider' ) ) {
-                    $sliderObj = new RevSlider();
-                    foreach ( $sliderObj->getArrSliders() as $slider ) {
-                        $slider->initByID( $slider->getID() );
-                        $slider->deleteSlider();
-                    }
+            if ( class_exists( 'RevSlider' ) ) {
+                $sliderObj = new RevSlider();
+                foreach ( $sliderObj->getArrSliders() as $slider ) {
+                    $slider->initByID( $slider->getID() );
+                    $slider->deleteSlider();
                 }
+            }
 
                 // Delete Widgets
-                global $wp_registered_widget_controls;
+            global $wp_registered_widget_controls;
 
-                $widget_controls = $wp_registered_widget_controls;
+            $widget_controls = $wp_registered_widget_controls;
 
-                $available_widgets = array();
+            $available_widgets = array();
 
-                foreach ( $widget_controls as $widget ) {
+            foreach ( $widget_controls as $widget ) {
                 if ( !empty( $widget[ 'id_base' ] ) && !isset( $available_widgets[ $widget[ 'id_base' ] ] ) ) { // no dupes
                     $available_widgets[] = $widget[ 'id_base' ];
                 }
