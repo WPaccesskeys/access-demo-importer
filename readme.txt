@@ -12,20 +12,20 @@ Stable tag: 1.0.0
 
 
 == Description ==
-This plugin will import demo contents for the active theme which are configured with this plugin. By default the plugin will fetch the GitHub repo configured on our GitHub account(WPaccesskeys). 
+This plugin will import demo contents for the active theme which are configured with this plugin. By default the plugin will fetch the configuration files stored on our server.
 If you want to configure your own theme with the plugin, you just need to point to your config.json file and pass it to the filter 
 <strong>adi_git_config_location</strong> 
 
 Example: 
 
-If your GitHub URL to config.json is 'https://raw.githubusercontent.com/WPaccesskeys/WPaccesskeys.github.io/master/theme-demos/theme-name-demos/config.json'
+If your URL to config.json is 'https://example.com/theme-demos/config.json'
 
 You will have to pass this to the filter 'adi_git_config_location' like
 
 <pre>
 add_filter('adi_git_config_location', 'git_url_config' );
 function git_url_config(){
-	$git_url = 'https://raw.githubusercontent.com/WPaccesskeys/WPaccesskeys.github.io/master/theme-demos/theme-name-demos/config.json';
+	$git_url = 'https://example.com/theme-demos/config.json';
 	return $git_url;
 }
 </pre>

@@ -98,7 +98,7 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 		 */
 		public static function get_demos_data() {
 			
-			$git_url  	= 'https://raw.githubusercontent.com/WPaccesskeys/WPaccesskeys.github.io/master/theme-demos/'.get_template().'-demos/config.json';
+			$git_url  	= 'https://accesspressthemes.com/theme-demo-configs/'.get_template().'-demos/config.json';
 			$git_url 	= apply_filters('adi_git_config_location', $git_url );
 
 			$data 		= ADI_Demos_Helpers::get_remote( $git_url );
