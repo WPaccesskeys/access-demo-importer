@@ -98,7 +98,8 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 		 */
 		public static function get_demos_data() {
 			
-			$git_url  	= 'https://accesspressthemes.com/theme-demo-configs/'.get_template().'-demos/config.json';
+			$git_url  	= 'https://raw.githubusercontent.com/WPaccesskeys/WPaccesskeys.github.io/master/theme-demos/'.get_template().'-demos/config.json';
+			
 			$git_url 	= apply_filters('adi_git_config_location', $git_url );
 
 			$data 		= ADI_Demos_Helpers::get_remote( $git_url );
@@ -806,7 +807,8 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 				$elementor_width 	= isset( $demo['elementor_width'] ) ? $demo['elementor_width'] : '';
 
 				// Reading settings
-				$homepage_title 	= isset( $demo['home_title'] ) ? $demo['home_title'] : 'Home';
+				$homepage_title 	= isset( $demo['home_title'] ) ? $demo['home_title'] : '';
+
 				$blog_title 		= isset( $demo['blog_title'] ) ? $demo['blog_title'] : '';
 
 				// Posts to show on the blog page
@@ -902,7 +904,11 @@ if ( ! class_exists( 'ADI_Demos' ) ) {
 			    $home_page = get_page_by_title( $homepage_title );
 			    $blog_page = get_page_by_title( $blog_title );
 
-			    update_option( 'show_on_front', 'page' );
+			    if( empty($homepage_title) ){
+					update_option( 'show_on_front', 'posts' );
+				}else{
+			   	 	update_option( 'show_on_front', 'page' );
+				}
 
 			    if ( is_object( $home_page ) ) {
 					update_option( 'page_on_front', $home_page->ID );

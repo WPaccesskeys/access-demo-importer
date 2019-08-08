@@ -5,6 +5,7 @@
     background: rgba(0,0,0,.5);
     height: 100%;
     width: 100%;
+    z-index: 99999;
 }
 .ap-popup-show .adi-demo-popup-container{
 

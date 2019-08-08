@@ -3,7 +3,7 @@
  * Plugin Name: Access Demo Importer
  * Plugin URI: https://wordpress.org/plugins/access-demo-importer
  * Description: The plugin is used for importing demos on the themes.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: AccessPress Themes
  * Author URI:  https://accesspressthemes.com/
  * Text Domain: access-demo-importer
@@ -17,7 +17,7 @@ if ( !defined( 'WPINC' ) ) {
     die();
 }
 
-define( 'ADI_VERSION', '1.0.0' );
+define( 'ADI_VERSION', '1.0.1' );
 
 define( 'ADI_FILE', __FILE__ );
 define( 'ADI_PLUGIN_BASENAME', plugin_basename( ADI_FILE ) );

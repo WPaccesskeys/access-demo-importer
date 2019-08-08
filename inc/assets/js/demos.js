@@ -341,6 +341,7 @@
 
 					// Indicates if the importing of the content can continue
 					var continueProcess = true;
+					var importCounter = 0;
 
 					// Check if the importing of the content was successful or if there was any error
 					if ( data.status === 500 || data.status === 502 || data.status === 503 ) {
@@ -360,7 +361,13 @@
 
 							// If there was an error with the importing of the XML file, stop the process
 							if ( error === 'xml_import_error' ) {
-								continueProcess = false;
+								importCounter++;
+								if( importCounter <= 3 ){
+									console.log('Running importer process again, too many data to import...');
+									continueProcess = true;
+								}else{
+									continueProcess = false;
+								}
 							}
 						}
 
